@@ -18,6 +18,12 @@
 - React Router 7
 - Recharts + Rough.js（手绘风图表与 UI 边框）
 
+## 在线演示
+
+GitHub Pages：**https://tuohai-li.github.io/marker-inventory-cn/**
+
+（推送 `main` 分支后由 GitHub Actions 自动部署，首次约需 1–2 分钟。）
+
 ## 本地运行
 
 ```bash
@@ -31,6 +37,13 @@ npm run dev
 
 ```bash
 npm run build
+npm run preview
+```
+
+## GitHub Pages 本地预览
+
+```bash
+npm run build:pages
 npm run preview
 ```
 

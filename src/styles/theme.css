@@ -1,0 +1,99 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #f5eedc;
+  --foreground: #1a1407;
+  --card: #fffef5;
+  --card-foreground: #1a1407;
+  --popover: #fffef5;
+  --popover-foreground: #1a1407;
+  --primary: #2a2310;
+  --primary-foreground: #fffef5;
+  --secondary: #e8ddc0;
+  --secondary-foreground: #1a1407;
+  --muted: #7a6a50;
+  --muted-foreground: #7a6a50;
+  --accent: #d0c8a0;
+  --accent-foreground: #1a1407;
+  --destructive: #c84040;
+  --destructive-foreground: #fffef5;
+  --border: #2a2310;
+  --input: transparent;
+  --input-background: #ede5cc;
+  --ring: #2a2310;
+  --radius: 0.375rem;
+
+  --sketch-ink: #2a2310;
+  --sketch-paper: #fffef5;
+  --sketch-canvas: #f5eedc;
+  --sketch-sidebar: #ede5cc;
+  --sketch-muted: #7a6a50;
+  --sketch-input-bg: #ede5cc;
+  --sketch-shadow-offset: 2.5px;
+  --sketch-stroke-width: 2;
+  --font-sketch: "Caveat", "Ma Shan Zheng", cursive;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+  --color-ink: var(--sketch-ink);
+  --color-paper: var(--sketch-paper);
+  --color-canvas: var(--sketch-canvas);
+  --color-sidebar-bg: var(--sketch-sidebar);
+  --font-sketch: var(--font-sketch);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+}
+
+@layer base {
+  * {
+    @apply outline-ring/50;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    border: none;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  body {
+    @apply bg-canvas text-foreground;
+    font-family: var(--font-sketch);
+  }
+}
+
+@layer utilities {
+  .font-sketch {
+    font-family: var(--font-sketch);
+  }
+
+  .sketch-row {
+    border-bottom: 1.5px dashed var(--sketch-ink);
+  }
+}

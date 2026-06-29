@@ -1,0 +1,144 @@
+/* Layer 2: CSS-only motion — GPU-friendly transform/opacity only */
+
+@keyframes sketch-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes sketch-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sketch-scale-in {
+  from {
+    opacity: 0;
+    transform: scale3d(0.96, 0.96, 1);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes sketch-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sketch-ink-fill {
+  from {
+    opacity: 0.45;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
+.sketch-enter {
+  opacity: 0;
+  animation: sketch-fade-up 0.42s cubic-bezier(0.33, 0.12, 0.18, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.sketch-enter-fade {
+  opacity: 0;
+  animation: sketch-fade-in 0.35s ease-out forwards;
+  will-change: opacity;
+}
+
+.sketch-enter-scale {
+  opacity: 0;
+  animation: sketch-scale-in 0.38s cubic-bezier(0.33, 0.12, 0.18, 1) forwards;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.sketch-page-enter {
+  animation: sketch-fade-in 0.28s ease-out forwards;
+  will-change: opacity;
+}
+
+.sketch-backdrop-enter {
+  animation: sketch-backdrop-in 0.2s ease-out forwards;
+  will-change: opacity;
+}
+
+.sketch-hover-lift {
+  transition: transform 0.2s cubic-bezier(0.33, 0.12, 0.18, 1);
+  will-change: transform;
+}
+
+.sketch-hover-lift:hover {
+  transform: translate3d(0, -2px, 0);
+}
+
+.sketch-hover-lift:active {
+  transform: translate3d(0, 0, 0) scale3d(0.995, 0.995, 1);
+}
+
+.sketch-ink-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  pointer-events: none;
+  animation: sketch-ink-fill 0.55s cubic-bezier(0.33, 0.12, 0.18, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.pie-stroke-overlay {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: pie-stroke-draw 0.48s cubic-bezier(0.33, 0.12, 0.18, 1) forwards;
+  will-change: stroke-dashoffset;
+}
+
+@keyframes pie-stroke-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pie-stroke-overlay {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .sketch-enter,
+  .sketch-enter-fade,
+  .sketch-enter-scale,
+  .sketch-page-enter,
+  .sketch-backdrop-enter,
+  .sketch-ink-fill {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .sketch-hover-lift {
+    transition: none;
+  }
+
+  .sketch-hover-lift:hover,
+  .sketch-hover-lift:active {
+    transform: none;
+  }
+}

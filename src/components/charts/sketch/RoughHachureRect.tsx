@@ -42,7 +42,33 @@ export function RoughHachureRect({
     paint();
     const observer = new ResizeObserver(paint);
     observer.observe(container);
-    return () => observer.disconnect();
+
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          lastKeyRef.current = "";
+          paint();
+        }
+      },
+      { threshold: 0.01 },
+    );
+    visibilityObserver.observe(container);
+
+    const onPageFlipped = () => {
+      requestAnimationFrame(() => {
+        lastKeyRef.current = "";
+        paint();
+      });
+    };
+    window.addEventListener("book:page-flipped", onPageFlipped);
+    window.addEventListener("book:page-ready", onPageFlipped);
+
+    return () => {
+      observer.disconnect();
+      visibilityObserver.disconnect();
+      window.removeEventListener("book:page-flipped", onPageFlipped);
+      window.removeEventListener("book:page-ready", onPageFlipped);
+    };
   }, [color, withBorder, withPaper]);
 
   return (

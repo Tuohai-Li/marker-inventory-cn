@@ -84,9 +84,34 @@ export function useRoughCanvas({ variant = "card", fill }: UseRoughCanvasOptions
     });
     observer.observe(container);
 
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          retries = 0;
+          lastKeyRef.current = "";
+          paint();
+        }
+      },
+      { threshold: 0.01 },
+    );
+    visibilityObserver.observe(container);
+
+    const onPageFlipped = () => {
+      requestAnimationFrame(() => {
+        retries = 0;
+        lastKeyRef.current = "";
+        paint();
+      });
+    };
+    window.addEventListener("book:page-flipped", onPageFlipped);
+    window.addEventListener("book:page-ready", onPageFlipped);
+
     return () => {
       window.clearTimeout(retryTimer);
       observer.disconnect();
+      visibilityObserver.disconnect();
+      window.removeEventListener("book:page-flipped", onPageFlipped);
+      window.removeEventListener("book:page-ready", onPageFlipped);
       lastKeyRef.current = "";
     };
   }, [variant, fill]);

@@ -27,3 +27,6 @@ Thumbs.db
 
 # cache
 *.tsbuildinfo
+
+# superpowers runtime
+.superpowers/

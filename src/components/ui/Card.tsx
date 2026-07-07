@@ -1,11 +1,10 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
-import { SketchEnter } from "./sketch/SketchEnter";
 import { RoughBox } from "./sketch/RoughBox";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: "elevated" | "flat" | "dashed";
-  /** Layer 2：内容入场延迟 (ms)，Rough 边框保持静态 */
+  /** @deprecated 卡片入场淡入已取消（翻页动画本身就是过渡），此参数保留但不再生效 */
   enterDelay?: number;
   hoverLift?: boolean;
   children: ReactNode;
@@ -15,7 +14,7 @@ export function Card({
   variant = "elevated",
   className,
   children,
-  enterDelay,
+  enterDelay: _enterDelay,
   hoverLift = true,
   ...props
 }: CardProps) {
@@ -29,21 +28,10 @@ export function Card({
         )}
         {...props}
       >
-        {enterDelay !== undefined ? (
-          <SketchEnter delay={enterDelay}>{children}</SketchEnter>
-        ) : (
-          children
-        )}
+        {children}
       </div>
     );
   }
-
-  const content =
-    enterDelay !== undefined ? (
-      <SketchEnter delay={enterDelay}>{children}</SketchEnter>
-    ) : (
-      children
-    );
 
   return (
     <RoughBox
@@ -52,7 +40,7 @@ export function Card({
       hoverLift={hoverLift}
       {...props}
     >
-      {content}
+      {children}
     </RoughBox>
   );
 }

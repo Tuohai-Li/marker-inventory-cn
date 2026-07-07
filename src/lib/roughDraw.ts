@@ -3,6 +3,7 @@ export type { RoughSvg } from "./rough/roughStaticRenderer";
 export { colorSeed } from "./rough/roughStaticRenderer";
 export { mountCachedHachureBlock, mountCachedPieSector, mountCachedRoughRect } from "./rough/roughStaticRenderer";
 export { clearRoughCache, roughCacheKey } from "./rough/roughCache";
+export { describeRectBorderPath } from "./describeRectBorderPath";
 
 const RADIAN = Math.PI / 180;
 
@@ -11,15 +12,15 @@ export function appendRoughRect() {
   /* legacy */
 }
 
-/** 在 SVG 内绘制手绘斜线色块（静态缓存） */
+/** 在 SVG 或 <g> 内绘制手绘斜线色块（静态缓存） */
 export function drawRoughHachureBlock(
-  svg: SVGSVGElement,
+  target: SVGSVGElement | SVGGElement,
   width: number,
   height: number,
   color: string,
   options: { withBorder?: boolean; withPaper?: boolean } = {},
 ) {
-  mountCachedHachureBlock(svg, width, height, color, options);
+  mountCachedHachureBlock(target, width, height, color, options);
 }
 
 /** 生成 recharts 扇区 path（与 Sector 一致） */

@@ -13,7 +13,7 @@ function createTempSvg() {
   return document.createElementNS("http://www.w3.org/2000/svg", "svg");
 }
 
-function mountToSvg(target: SVGSVGElement, element: Element) {
+function mountToTarget(target: SVGSVGElement | SVGGElement, element: Element) {
   target.replaceChildren(element);
 }
 
@@ -43,7 +43,7 @@ export function mountCachedRoughRect(
     return rc.rectangle(x, y, w, h, options);
   });
 
-  mountToSvg(target, node);
+  mountToTarget(target, node);
 }
 
 interface HachureBlockOptions {
@@ -53,7 +53,7 @@ interface HachureBlockOptions {
 
 /** 缓存并挂载手绘斜线色块 */
 export function mountCachedHachureBlock(
-  target: SVGSVGElement,
+  target: SVGSVGElement | SVGGElement,
   width: number,
   height: number,
   color: string,
@@ -133,7 +133,7 @@ export function mountCachedHachureBlock(
     return wrapper;
   });
 
-  mountToSvg(target, node);
+  mountToTarget(target, node);
 }
 
 const PIE_FILL_PRESETS = {

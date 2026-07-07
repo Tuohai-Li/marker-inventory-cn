@@ -1,6 +1,7 @@
-import { useLayoutEffect, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef } from "react";
 import type { PieSectorDataItem } from "recharts/types/polar/Pie";
 import { cn } from "@/lib/cn";
+import { useSketchWhenVisible } from "@/hooks/useSketchWhenVisible";
 import { describePieSectorPath, describePieStrokeOverlay, drawRoughPieSector } from "@/lib/roughDraw";
 import { SKETCH_INK } from "@/lib/sketchColors";
 
@@ -11,7 +12,7 @@ function sectorColor(props: PieSectorDataItem) {
 
 interface RoughPieSectorProps extends PieSectorDataItem {
   variant?: "default" | "tidy";
-  /** Layer 2：CSS 入场延迟 */
+  /** @deprecated 入场动画已取消，参数保留但不再生效 */
   enterDelay?: number;
   /** Layer 3：简洁 SVG 描边 overlay（非 Rough） */
   strokeOverlay?: boolean;
@@ -19,7 +20,7 @@ interface RoughPieSectorProps extends PieSectorDataItem {
 
 export function RoughPieSector({
   variant = "default",
-  enterDelay = 0,
+  enterDelay: _enterDelay,
   strokeOverlay = false,
   ...props
 }: RoughPieSectorProps) {
@@ -28,6 +29,14 @@ export function RoughPieSector({
   const strokePathD = describePieStrokeOverlay(props);
   const roughRef = useRef<SVGGElement>(null);
   const paintedKeyRef = useRef("");
+  const { ref: sectorRef, visible } = useSketchWhenVisible<SVGGElement>();
+
+  const setSectorRef = useCallback(
+    (node: SVGGElement | null) => {
+      sectorRef(node);
+    },
+    [sectorRef],
+  );
 
   useLayoutEffect(() => {
     const g = roughRef.current;
@@ -41,21 +50,23 @@ export function RoughPieSector({
   }, [pathD, color, variant]);
 
   return (
-    <g
-      className={cn("recharts-sector sketch-enter-scale")}
-      style={{ animationDelay: `${enterDelay}ms` }}
-    >
-      <g ref={roughRef} />
+    <g ref={setSectorRef} className={cn("recharts-sector")}>
+      <g
+        ref={roughRef}
+        className={cn(
+          strokeOverlay && "sketch-fill-after-stroke pie-fill-after-stroke",
+          strokeOverlay && visible && "sketch-fill-revealed",
+        )}
+      />
       {strokeOverlay && (
         <path
           d={strokePathD}
+          pathLength={1}
           fill="none"
           stroke={SKETCH_INK}
           strokeWidth={1.5}
           strokeLinecap="round"
-          pathLength={100}
-          className="pie-stroke-overlay"
-          style={{ animationDelay: `${enterDelay}ms` }}
+          className="sketch-stroke-draw pie-stroke-overlay"
         />
       )}
     </g>

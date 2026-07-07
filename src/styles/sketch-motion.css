@@ -40,15 +40,45 @@
   }
 }
 
-@keyframes sketch-ink-fill {
+/* Layer 3：SVG path 描边轨迹（stroke-dashoffset） */
+@keyframes sketch-stroke-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sketch-fill-in {
   from {
-    opacity: 0.45;
-    transform: scaleX(0);
+    opacity: 0;
   }
   to {
-    opacity: 0;
-    transform: scaleX(1);
+    opacity: 1;
   }
+}
+
+.sketch-stroke-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: sketch-stroke-draw 0.55s cubic-bezier(0.33, 0.12, 0.18, 1) forwards;
+  will-change: stroke-dashoffset;
+}
+
+/* 描边完成后斜线填充淡入（仅在元素可见后挂上 .sketch-fill-revealed） */
+.sketch-fill-after-stroke {
+  opacity: 0;
+}
+
+.sketch-fill-after-stroke.sketch-fill-revealed {
+  animation: sketch-fill-in 0.32s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.pie-stroke-overlay {
+  animation-duration: 0.48s;
+}
+
+.pie-fill-after-stroke.sketch-fill-revealed {
+  animation-delay: 0.44s;
 }
 
 .sketch-enter {
@@ -93,41 +123,24 @@
   transform: translate3d(0, 0, 0) scale3d(0.995, 0.995, 1);
 }
 
-.sketch-ink-fill {
-  position: absolute;
-  inset: 0;
-  transform-origin: left center;
-  transform: scaleX(0);
-  pointer-events: none;
-  animation: sketch-ink-fill 0.55s cubic-bezier(0.33, 0.12, 0.18, 1) forwards;
-  will-change: transform, opacity;
-}
-
-.pie-stroke-overlay {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: pie-stroke-draw 0.48s cubic-bezier(0.33, 0.12, 0.18, 1) forwards;
-  will-change: stroke-dashoffset;
-}
-
-@keyframes pie-stroke-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .pie-stroke-overlay {
+  .sketch-stroke-draw {
     animation: none;
     stroke-dashoffset: 0;
+  }
+
+  .sketch-fill-after-stroke,
+  .sketch-fill-after-stroke.sketch-fill-revealed,
+  .pie-fill-after-stroke {
+    animation: none;
+    opacity: 1;
   }
 
   .sketch-enter,
   .sketch-enter-fade,
   .sketch-enter-scale,
   .sketch-page-enter,
-  .sketch-backdrop-enter,
-  .sketch-ink-fill {
+  .sketch-backdrop-enter {
     animation: none;
     opacity: 1;
     transform: none;

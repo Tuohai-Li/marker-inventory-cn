@@ -2,7 +2,6 @@ import { useNavigate } from "react-router";
 import type { MarkerWithBrand } from "@/types";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { SketchEnter } from "@/components/ui/sketch/SketchEnter";
 import { MarkerRow } from "./MarkerRow";
 interface RecentMarkersListProps {
   markers: MarkerWithBrand[];
@@ -26,14 +25,13 @@ export function RecentMarkersList({
         </Button>
       </div>
       <div>
-        {markers.map((m, index) => (
-          <SketchEnter key={m.id} delay={index * 45} variant="fade">
-            <MarkerRow
-              marker={m}
-              showSeries={showSeries}
-              onClick={() => navigate(`/library/${m.id}`)}
-            />
-          </SketchEnter>
+        {markers.map((m) => (
+          <MarkerRow
+            key={m.id}
+            marker={m}
+            showSeries={showSeries}
+            onClick={() => navigate(`/library/${m.id}`)}
+          />
         ))}
       </div>    </Card>
   );

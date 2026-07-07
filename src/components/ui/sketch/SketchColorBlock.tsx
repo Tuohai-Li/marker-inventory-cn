@@ -1,18 +1,21 @@
-import { useLayoutEffect, useRef, type CSSProperties } from "react";
-import { drawRoughHachureBlock } from "@/lib/roughDraw";
-import { SKETCH_PAPER } from "@/lib/sketchColors";
-import { InkFillOverlay } from "./InkFillOverlay";
+import { useCallback, useLayoutEffect, useRef, type CSSProperties } from "react";
+import { cn } from "@/lib/cn";
+import { useSketchWhenVisible } from "@/hooks/useSketchWhenVisible";
+import { describeRectBorderPath, drawRoughHachureBlock } from "@/lib/roughDraw";
+import { SKETCH_INK } from "@/lib/sketchColors";
 
 interface SketchColorBlockProps {
   color: string;
   className?: string;
   style?: CSSProperties;
   title?: string;
+  /** Layer 3：SVG path 描边动画 + 描边完成后斜线填充淡入 */
   inkFill?: boolean;
 }
 
 const VIEW_W = 80;
 const VIEW_H = 56;
+const BORDER_PAD = 1.5;
 
 export function SketchColorBlock({
   color,
@@ -21,21 +24,33 @@ export function SketchColorBlock({
   title,
   inkFill = true,
 }: SketchColorBlockProps) {
-  const svgRef = useRef<SVGSVGElement>(null);
+  const fillRef = useRef<SVGGElement>(null);
   const paintedRef = useRef("");
+  const { ref: visibleRef, visible } = useSketchWhenVisible<HTMLDivElement>();
+
+  const setWrapperRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      visibleRef(node);
+    },
+    [visibleRef],
+  );
 
   useLayoutEffect(() => {
-    const svg = svgRef.current;
-    if (!svg) return;
+    const g = fillRef.current;
+    if (!g) return;
     if (paintedRef.current === color) return;
     paintedRef.current = color;
-    drawRoughHachureBlock(svg, VIEW_W, VIEW_H, color, { withBorder: true, withPaper: true });
-  }, [color]);
+    drawRoughHachureBlock(g, VIEW_W, VIEW_H, color, {
+      withBorder: !inkFill,
+      withPaper: true,
+    });
+  }, [color, inkFill]);
+
+  const borderPath = describeRectBorderPath(VIEW_W, VIEW_H, BORDER_PAD);
 
   return (
-    <div className="relative inline-block" style={{ lineHeight: 0 }}>
+    <div ref={setWrapperRef} className="relative inline-block" style={{ lineHeight: 0 }}>
       <svg
-        ref={svgRef}
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
         preserveAspectRatio="none"
         title={title}
@@ -44,9 +59,27 @@ export function SketchColorBlock({
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden={title ? undefined : true}
       >
-        <rect width={VIEW_W} height={VIEW_H} fill={SKETCH_PAPER} />
+        <g
+          ref={fillRef}
+          className={cn(
+            inkFill && "sketch-fill-after-stroke",
+            inkFill && visible && "sketch-fill-revealed",
+          )}
+        />
+        {inkFill && (
+          <path
+            d={borderPath}
+            pathLength={1}
+            fill="none"
+            stroke={SKETCH_INK}
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            vectorEffect="non-scaling-stroke"
+            className="sketch-stroke-draw"
+          />
+        )}
       </svg>
-      {inkFill && <InkFillOverlay color={color} />}
     </div>
   );
 }

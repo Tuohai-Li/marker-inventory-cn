@@ -1,0 +1,173 @@
+/* ===== 书桌 / 封面 / 书页：把整个界面包装成一本摊开的速写本 ===== */
+
+/* 书桌背景（深色木纹感，衬托封面） */
+.book-desk {
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(255, 236, 200, 0.14), transparent 55%),
+    linear-gradient(150deg, #9a7c50 0%, #8a6c42 55%, #7c5f38 100%);
+}
+
+/* 牛皮纸封面：包裹内容区，左侧是书脊 */
+.book-cover {
+  position: relative;
+  padding: 12px 14px 14px 26px;
+  border-radius: 8px 16px 16px 8px;
+  border: 2px solid #6b5028;
+  background:
+    radial-gradient(130% 100% at 28% 0%, rgba(255, 255, 255, 0.12), transparent 58%),
+    linear-gradient(158deg, #cbaa79 0%, #bd9a66 62%, #b08c58 100%);
+  box-shadow:
+    0 16px 34px rgba(48, 32, 12, 0.4),
+    inset 0 0 0 1px rgba(255, 250, 235, 0.16);
+}
+
+/* 书脊装订线（虚线缝线） */
+.book-cover::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 16px;
+  bottom: 16px;
+  width: 0;
+  border-left: 2px dashed rgba(58, 40, 18, 0.5);
+  pointer-events: none;
+}
+
+/* 当前书页：右下叠出纸页边缘，左侧有书脊内阴影 */
+.book-page {
+  background-color: var(--sketch-canvas);
+  border-radius: 3px 8px 8px 3px;
+  box-shadow:
+    1.5px 1.5px 0 #e6dabd,
+    3px 3px 0 #ddcfae,
+    4.5px 4.5px 0 #d3c39d,
+    7px 9px 16px rgba(58, 40, 16, 0.3),
+    inset 16px 0 22px -16px rgba(74, 52, 24, 0.34);
+}
+
+/* 滚动条两侧预留等宽间距，使内容居中位置一致 */
+.book-scroll {
+  scrollbar-gutter: stable both-edges;
+}
+
+/* ===== StPageFlip 翻页书 ===== */
+
+.book-st-pageflip-host {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.book-st-pageflip {
+  width: 100%;
+  height: 100%;
+}
+
+.book-flip-page {
+  box-sizing: border-box;
+}
+
+/* 填满主内容区，避免单页模式居中缩成窄条 */
+.book-st-pageflip-host .stf__parent {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+.book-st-pageflip-host .stf__wrapper {
+  width: 100% !important;
+  height: 100% !important;
+  padding-bottom: 0 !important;
+}
+
+.book-st-pageflip-host .stf__block {
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== 页面边缘翻页热区 ===== */
+
+.book-edge-hotzone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 46px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  color: var(--sketch-muted);
+}
+
+.book-edge-hotzone:active {
+  cursor: grabbing;
+}
+
+.book-edge-hotzone.left-0 {
+  background: linear-gradient(to right, rgba(74, 52, 24, 0.1), transparent);
+}
+
+.book-edge-hotzone.right-0 {
+  background: linear-gradient(to left, rgba(74, 52, 24, 0.1), transparent);
+}
+
+.book-edge-hint {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.book-edge-hotzone:hover .book-edge-hint {
+  opacity: 0.85;
+  transform: scale(1);
+}
+
+/* ===== 右侧便笺贴导航 ===== */
+
+.sticky-note {
+  position: relative;
+  color: #2a2310;
+  border: 1.5px solid rgba(42, 35, 16, 0.32);
+  border-radius: 2px;
+  box-shadow: 1px 2px 5px rgba(50, 35, 10, 0.28);
+  transform: rotate(var(--note-rot, 0deg));
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+  cursor: pointer;
+}
+
+/* 顶部胶带 */
+.sticky-note::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 34px;
+  height: 9px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(42, 35, 16, 0.14);
+  pointer-events: none;
+}
+
+.sticky-note:hover {
+  transform: rotate(var(--note-rot, 0deg)) translateX(-8px) scale(1.04);
+  box-shadow: 3px 4px 9px rgba(50, 35, 10, 0.32);
+  z-index: 1;
+}
+
+.sticky-note-active {
+  transform: rotate(0deg) translateX(-10px) scale(1.06);
+  font-weight: 700;
+  box-shadow: 3px 5px 10px rgba(50, 35, 10, 0.38);
+  z-index: 2;
+}
+
+.sticky-note-active:hover {
+  transform: rotate(0deg) translateX(-10px) scale(1.06);
+}

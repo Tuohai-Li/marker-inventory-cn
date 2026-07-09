@@ -29,7 +29,11 @@ export function RoughPieSector({
   const strokePathD = describePieStrokeOverlay(props);
   const roughRef = useRef<SVGGElement>(null);
   const paintedKeyRef = useRef("");
-  const { ref: sectorRef, visible } = useSketchWhenVisible<SVGGElement>();
+  const {
+    ref: sectorRef,
+    visible,
+    revealKey,
+  } = useSketchWhenVisible<SVGGElement>();
 
   const setSectorRef = useCallback(
     (node: SVGGElement | null) => {
@@ -58,8 +62,9 @@ export function RoughPieSector({
           strokeOverlay && visible && "sketch-fill-revealed",
         )}
       />
-      {strokeOverlay && (
+      {strokeOverlay && visible && (
         <path
+          key={revealKey}
           d={strokePathD}
           pathLength={1}
           fill="none"

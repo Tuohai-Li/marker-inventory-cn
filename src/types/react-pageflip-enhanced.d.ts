@@ -23,6 +23,8 @@ declare module "react-pageflip-enhanced" {
     maxShadowOpacity?: number;
     flippingTime?: number;
     swipeDistance?: number;
+    disableFlipByClick?: boolean;
+    cornerHitSize?: number;
     showCover?: boolean;
     autoSize?: boolean;
     renderOnlyPageLengthChange?: boolean;
@@ -30,6 +32,7 @@ declare module "react-pageflip-enhanced" {
     className?: string;
     style?: React.CSSProperties;
     onFlip?: (e: { data: number }) => void;
+    onChangeState?: (e: { data: "user_fold" | "fold_corner" | "flipping" | "read" }) => void;
     onInit?: (e: { data: { page: number; mode: string } }) => void;
     children?: ReactNode;
   }

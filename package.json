@@ -6,7 +6,8 @@
   "scripts": {
     "build": "vite build",
     "build:pages": "vite build --base=/marker-inventory-cn/",
-    "dev": "vite"
+    "dev": "vite",
+    "postinstall": "node scripts/patch-react-pageflip-enhanced.cjs"
   },
   "dependencies": {
     "class-variance-authority": "0.7.1",
@@ -21,6 +22,7 @@
     "tailwind-merge": "3.2.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/vite": "4.1.12",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",

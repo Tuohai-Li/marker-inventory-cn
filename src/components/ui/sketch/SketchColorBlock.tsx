@@ -26,7 +26,11 @@ export function SketchColorBlock({
 }: SketchColorBlockProps) {
   const fillRef = useRef<SVGGElement>(null);
   const paintedRef = useRef("");
-  const { ref: visibleRef, visible } = useSketchWhenVisible<HTMLDivElement>();
+  const {
+    ref: visibleRef,
+    visible,
+    revealKey,
+  } = useSketchWhenVisible<HTMLDivElement>();
 
   const setWrapperRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -66,8 +70,9 @@ export function SketchColorBlock({
             inkFill && visible && "sketch-fill-revealed",
           )}
         />
-        {inkFill && (
+        {inkFill && visible && (
           <path
+            key={revealKey}
             d={borderPath}
             pathLength={1}
             fill="none"

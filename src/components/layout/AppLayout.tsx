@@ -3,7 +3,6 @@ import { Outlet, useLocation } from "react-router";
 import { AddMarkerModal } from "@/components/features/AddMarkerModal";
 import { Book } from "@/components/Book/Book";
 import { BookFlipBook } from "@/components/Book/BookFlipBook";
-import { BookGestures } from "@/components/Book/BookGestures";
 import { BookRouterSync, isExactBookRoute } from "@/components/Book/BookRouterSync";
 import { BOOK_PAGE_COUNT } from "@/components/Book/bookPages";
 import { Header } from "./Header";
@@ -28,7 +27,6 @@ function MainContent() {
         <>
           <BookFlipBook />
           <BookRouterSync />
-          <BookGestures />
         </>
       ) : (
         <StandardPage>

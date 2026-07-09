@@ -86,44 +86,17 @@
   height: 100%;
 }
 
-/* ===== 页面边缘翻页热区 ===== */
-
-.book-edge-hotzone {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 46px;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-  color: var(--sketch-muted);
+/* StPageFlip hover/flip temporary pages are reinserted DOM; keep sketches in their final state there. */
+.book-st-pageflip-host .book-flip-page:not(.--simple) .sketch-stroke-draw {
+  animation: none !important;
+  stroke-dashoffset: 0;
 }
 
-.book-edge-hotzone:active {
-  cursor: grabbing;
-}
-
-.book-edge-hotzone.left-0 {
-  background: linear-gradient(to right, rgba(74, 52, 24, 0.1), transparent);
-}
-
-.book-edge-hotzone.right-0 {
-  background: linear-gradient(to left, rgba(74, 52, 24, 0.1), transparent);
-}
-
-.book-edge-hint {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-.book-edge-hotzone:hover .book-edge-hint {
-  opacity: 0.85;
-  transform: scale(1);
+.book-st-pageflip-host
+  .book-flip-page:not(.--simple)
+  .sketch-fill-after-stroke.sketch-fill-revealed {
+  animation: none !important;
+  opacity: 1;
 }
 
 /* ===== 右侧便笺贴导航 ===== */

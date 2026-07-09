@@ -7,6 +7,8 @@ import { BOOK_PAGE_COUNT } from "@/components/Book/bookPages";
 import { pathToBookIndex } from "@/components/Book/bookPages";
 import { useBookContext } from "@/contexts/BookContext";
 
+const PAGE_FLIP_CORNER_HIT_SIZE = 88;
+
 /** 仅首屏使用；后续翻页由 BookRouterSync 控制，避免 startPage 变化触发 turnToPage */
 function useInitialBookPage(): number {
   const location = useLocation();
@@ -24,8 +26,9 @@ function useInitialBookPage(): number {
  */
 export function BookFlipBook() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { bookRef, setPageSize, setCurrentIndex } = useBookContext();
   const startPage = useInitialBookPage();
+  const pendingFlipIndexRef = useRef<number | null>(null);
+  const { bookRef, setPageSize, setCurrentIndex, setSettledPage } = useBookContext();
   const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(
     null,
   );
@@ -71,7 +74,7 @@ export function BookFlipBook() {
     <div ref={containerRef} className="book-st-pageflip-host">
       {dimensions ? (
         <HTMLFlipBook
-          key={`${dimensions.width}x${dimensions.height}`}
+          key={`${dimensions.width}x${dimensions.height}x${PAGE_FLIP_CORNER_HIT_SIZE}`}
           ref={bookRef}
           className="book-st-pageflip"
           style={{ width: "100%", height: "100%" }}
@@ -85,18 +88,38 @@ export function BookFlipBook() {
           maxShadowOpacity={0.35}
           flippingTime={780}
           swipeDistance={30}
+          disableFlipByClick
+          cornerHitSize={PAGE_FLIP_CORNER_HIT_SIZE}
           showCover={false}
           renderOnlyPageLengthChange
           startPage={startPage}
           onFlip={(e) => {
             const index = typeof e.data === "number" ? e.data : Number(e.data);
+            pendingFlipIndexRef.current = index;
             setCurrentIndex(index);
             window.dispatchEvent(
               new CustomEvent("book:page-flipped", { detail: { index } }),
             );
           }}
+          onChangeState={(e) => {
+            if (e.data !== "read") return;
+
+            const index = pendingFlipIndexRef.current;
+            if (index === null) return;
+
+            pendingFlipIndexRef.current = null;
+            setSettledPage(index);
+            window.dispatchEvent(
+              new CustomEvent("book:page-settled", { detail: { index } }),
+            );
+          }}
           onInit={() => {
-            window.dispatchEvent(new CustomEvent("book:page-ready"));
+            setCurrentIndex(startPage);
+            setSettledPage(startPage);
+            pendingFlipIndexRef.current = null;
+            window.dispatchEvent(
+              new CustomEvent("book:page-ready", { detail: { index: startPage } }),
+            );
           }}
         >
           {bookPages}

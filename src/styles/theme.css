@@ -32,7 +32,7 @@
   --sketch-input-bg: #ede5cc;
   --sketch-shadow-offset: 2.5px;
   --sketch-stroke-width: 2;
-  --font-sketch: "Caveat", "Ma Shan Zheng", cursive;
+  --sketch-font-family: "Le Mi Crayon", "Caveat", "Ma Shan Zheng", cursive;
 }
 
 @theme inline {
@@ -60,7 +60,7 @@
   --color-paper: var(--sketch-paper);
   --color-canvas: var(--sketch-canvas);
   --color-sidebar-bg: var(--sketch-sidebar);
-  --font-sketch: var(--font-sketch);
+  --font-sketch: var(--sketch-font-family);
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
@@ -84,13 +84,13 @@
 
   body {
     @apply bg-canvas text-foreground;
-    font-family: var(--font-sketch);
+    font-family: var(--sketch-font-family);
   }
 }
 
 @layer utilities {
   .font-sketch {
-    font-family: var(--font-sketch);
+    font-family: var(--sketch-font-family);
   }
 
   .sketch-row {

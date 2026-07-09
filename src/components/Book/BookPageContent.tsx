@@ -9,6 +9,7 @@ import { PurchasesPage } from "@/pages/PurchasesPage";
 import { SettingsPage } from "@/pages/SettingsPage";
 import { StatsPage } from "@/pages/StatsPage";
 import { WishlistPage } from "@/pages/WishlistPage";
+import { BookPageIndexProvider } from "@/contexts/BookPageContext";
 
 /** 与 navigation / BOOK_PAGE_ROUTES 顺序一致 */
 const PAGE_COMPONENTS: ComponentType[] = [
@@ -29,5 +30,9 @@ export function BookPageContent({ index }: { index: number }) {
   const Component = PAGE_COMPONENTS[index];
   if (!Component) return null;
 
-  return <Component />;
+  return (
+    <BookPageIndexProvider index={index}>
+      <Component />
+    </BookPageIndexProvider>
+  );
 }

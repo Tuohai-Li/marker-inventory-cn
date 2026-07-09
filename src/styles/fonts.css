@@ -1,1 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Ma+Shan+Zheng&display=swap');
+@font-face {
+  font-family: "Caveat";
+  src: url("../assets/fonts/Caveat-VariableFont_wght.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400 700;
+}
+
+@font-face {
+  font-family: "Ma Shan Zheng";
+  src: url("../assets/fonts/MaShanZheng-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Le Mi Crayon";
+  src: url("../assets/fonts/LeMiCrayon-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}

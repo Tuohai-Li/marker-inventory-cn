@@ -9,7 +9,7 @@ export function Select({ className, children, ...props }: SelectProps) {
     <RoughBox variant="input" className="w-full">
       <select
         className={cn(
-          "w-full appearance-none bg-transparent px-2.5 py-1.5 text-sm font-sketch outline-none",
+          "w-full appearance-none bg-transparent px-2.5 py-1.5 text-sm font-ui outline-none",
           className,
         )}
         {...props}

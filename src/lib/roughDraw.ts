@@ -7,12 +7,11 @@ export { describeRectBorderPath } from "./describeRectBorderPath";
 
 const RADIAN = Math.PI / 180;
 
-/** @deprecated 请使用 mountCachedRoughRect */
+/** @deprecated Use mountCachedRoughRect instead. */
 export function appendRoughRect() {
   /* legacy */
 }
 
-/** 在 SVG 或 <g> 内绘制手绘斜线色块（静态缓存） */
 export function drawRoughHachureBlock(
   target: SVGSVGElement | SVGGElement,
   width: number,
@@ -23,7 +22,6 @@ export function drawRoughHachureBlock(
   mountCachedHachureBlock(target, width, height, color, options);
 }
 
-/** 生成 recharts 扇区 path（与 Sector 一致） */
 export function describePieSectorPath(props: {
   cx?: number;
   cy?: number;
@@ -67,7 +65,6 @@ export function describePieSectorPath(props: {
   ].join(" ");
 }
 
-/** 在 <g> 内绘制手绘扇区（静态缓存，无动画） */
 export function drawRoughPieSector(
   g: SVGGElement,
   pathD: string,
@@ -75,30 +72,4 @@ export function drawRoughPieSector(
   options: { variant?: "default" | "tidy" } = {},
 ) {
   mountCachedPieSector(g, pathD, color, options.variant ?? "default");
-}
-
-/** Layer 3：简洁弧线路径，供 SVG stroke-dash 描边 overlay 使用（非 Rough） */
-export function describePieStrokeOverlay(props: {
-  cx?: number;
-  cy?: number;
-  innerRadius?: number;
-  outerRadius?: number;
-  startAngle?: number;
-  endAngle?: number;
-}) {
-  const cx = props.cx ?? 0;
-  const cy = props.cy ?? 0;
-  const innerRadius = props.innerRadius ?? 0;
-  const outerRadius = props.outerRadius ?? 0;
-  const startAngle = props.startAngle ?? 0;
-  const endAngle = props.endAngle ?? 0;
-  const midRadius = innerRadius > 0 ? (innerRadius + outerRadius) / 2 : outerRadius * 0.85;
-  const largeArc = endAngle - startAngle > 180 ? 1 : 0;
-
-  const sx = cx + midRadius * Math.cos(-startAngle * RADIAN);
-  const sy = cy + midRadius * Math.sin(-startAngle * RADIAN);
-  const ex = cx + midRadius * Math.cos(-endAngle * RADIAN);
-  const ey = cy + midRadius * Math.sin(-endAngle * RADIAN);
-
-  return `M ${sx},${sy} A ${midRadius},${midRadius},0,${largeArc},0,${ex},${ey}`;
 }

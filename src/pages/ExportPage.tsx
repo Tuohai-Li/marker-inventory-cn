@@ -17,6 +17,7 @@ import { backupNow, importFromJsonFile, restoreBackup } from "@/api/settings";
 import { getMarkers } from "@/api/markers";
 import { Button } from "@/components/ui/Button";
 import { Card, CardHeader } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { Tag } from "@/components/ui/Tag";
 import { useAppSettings } from "@/hooks/useAppSettings";
 
@@ -68,7 +69,11 @@ export function ExportPage() {
 
   return (
     <div className="max-w-[620px]">
-      <h1 className="mb-4 text-[22px] font-bold">导出与备份 💾</h1>
+      <PageHeader
+        title="导出与备份 💾"
+        description="把这本马克笔手账备份好，也能导出给表格工具继续整理。"
+        meta={lastBackup ? "已备份" : "待备份"}
+      />
       {message && <p className="mb-3 text-sm text-[#5a8c6a]">{message}</p>}
 
       <Card className="mb-3 p-3.5">

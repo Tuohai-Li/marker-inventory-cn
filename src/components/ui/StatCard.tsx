@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Card } from "./Card";
 
@@ -23,17 +23,20 @@ export function StatCard({
   centered,
   enterDelay,
 }: StatCardProps) {
-  const accentStyle: CSSProperties | undefined = accentColor
-    ? { boxShadow: `inset 4px 0 0 ${accentColor}` }
-    : undefined;
-
   return (
     <Card
       className={cn("p-3", centered && "text-center", className)}
-      style={accentStyle}
       enterDelay={enterDelay}
     >
-      <div className="mb-1 text-[11px] text-muted">{label}</div>
+      <div className="mb-1 flex items-center justify-center gap-1.5 text-[11px] text-muted">
+        {accentColor && (
+          <span
+            className="inline-block h-2 w-2 rounded-full border border-ink"
+            style={{ backgroundColor: accentColor }}
+          />
+        )}
+        <span>{label}</span>
+      </div>
       <div className={cn("flex items-end justify-between", centered && "justify-center")}>
         <div
           className="text-[26px] font-bold leading-none"
@@ -59,7 +62,7 @@ export function StatsGrid({ items, columns = 4, className }: StatsGridProps) {
     <div
       className={cn(
         "mb-4 grid gap-3",
-        columns === 4 ? "grid-cols-4" : "grid-cols-3",
+        columns === 4 ? "grid-cols-2 lg:grid-cols-4" : "grid-cols-1 sm:grid-cols-3",
         className,
       )}
     >

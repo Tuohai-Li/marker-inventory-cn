@@ -2,8 +2,7 @@ import { useCallback, useLayoutEffect, useRef } from "react";
 import type { PieSectorDataItem } from "recharts/types/polar/Pie";
 import { cn } from "@/lib/cn";
 import { useSketchWhenVisible } from "@/hooks/useSketchWhenVisible";
-import { describePieSectorPath, describePieStrokeOverlay, drawRoughPieSector } from "@/lib/roughDraw";
-import { SKETCH_INK } from "@/lib/sketchColors";
+import { describePieSectorPath, drawRoughPieSector } from "@/lib/roughDraw";
 
 function sectorColor(props: PieSectorDataItem) {
   const payload = props.payload as { fill?: string } | undefined;
@@ -26,14 +25,9 @@ export function RoughPieSector({
 }: RoughPieSectorProps) {
   const color = sectorColor(props);
   const pathD = describePieSectorPath(props);
-  const strokePathD = describePieStrokeOverlay(props);
   const roughRef = useRef<SVGGElement>(null);
   const paintedKeyRef = useRef("");
-  const {
-    ref: sectorRef,
-    visible,
-    revealKey,
-  } = useSketchWhenVisible<SVGGElement>();
+  const { ref: sectorRef, visible } = useSketchWhenVisible<SVGGElement>();
 
   const setSectorRef = useCallback(
     (node: SVGGElement | null) => {
@@ -58,22 +52,10 @@ export function RoughPieSector({
       <g
         ref={roughRef}
         className={cn(
-          strokeOverlay && "sketch-fill-after-stroke pie-fill-after-stroke",
-          strokeOverlay && visible && "sketch-fill-revealed",
+          strokeOverlay && "pie-rough-sector",
+          strokeOverlay && visible && "pie-rough-revealed",
         )}
       />
-      {strokeOverlay && visible && (
-        <path
-          key={revealKey}
-          d={strokePathD}
-          pathLength={1}
-          fill="none"
-          stroke={SKETCH_INK}
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          className="sketch-stroke-draw pie-stroke-overlay"
-        />
-      )}
     </g>
   );
 }

@@ -4,6 +4,7 @@ import { CheckSquare, Square } from "lucide-react";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { SketchColorBlock } from "@/components/ui/sketch/SketchColorBlock";
 import { cn } from "@/lib/cn";
 import { useMarkers } from "@/hooks/useMarkers";
@@ -50,12 +51,13 @@ export function LibraryPage() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-[22px] font-bold">马克笔库 📚</h1>
-        <span className="text-[13px] text-muted">共 {markers.length} 支</span>
-      </div>
+      <PageHeader
+        title="马克笔库 📚"
+        description="按颜色、编号和品牌快速检索你的收藏。"
+        meta={`共 ${markers.length} 支`}
+      />
 
-      <Card className="mb-3 flex items-center gap-2.5 p-2.5">
+      <Card className="tool-strip mb-3 flex items-center gap-2.5 p-2">
         <SearchBar
           wrapperClassName="max-w-[280px] flex-1"
           placeholder="搜索编号、颜色名…"
@@ -80,23 +82,22 @@ export function LibraryPage() {
       </Card>
 
       <Card className="overflow-hidden">
-        <div className="grid grid-cols-[32px_48px_1fr_60px_80px_50px_60px_60px_90px] gap-2 border-b-2 border-ink bg-secondary px-3.5 py-2 text-[13px] font-bold">
+        <div className="grid grid-cols-[28px_48px_minmax(0,1fr)_56px_52px] gap-2 border-b-2 border-ink bg-secondary px-3.5 py-2 font-hand text-[13px] font-bold lg:grid-cols-[32px_56px_1fr_64px_88px_54px_62px_62px_92px]">
           <div />
           <div>预览</div>
           <div>颜色名</div>
           <div>编号</div>
-          <div>品牌</div>
-          <div>系列</div>
+          <div className="hidden lg:block">品牌</div>
+          <div className="hidden lg:block">系列</div>
           <div>库存</div>
-          <div>价格</div>
-          <div>添加日期</div>
+          <div className="hidden lg:block">价格</div>
+          <div className="hidden lg:block">添加日期</div>
         </div>
         {filtered.map((m, i) => (
           <div
             key={m.id}
             className={cn(
-              "grid cursor-pointer grid-cols-[32px_48px_1fr_60px_80px_50px_60px_60px_90px] items-center gap-2 px-3.5 py-1.5 transition-colors",
-              i < filtered.length - 1 && "border-b border-dashed border-[#c8b890]",
+              "marker-record-row grid cursor-pointer grid-cols-[28px_48px_minmax(0,1fr)_56px_52px] items-center gap-2 px-3.5 py-2 font-ui transition-colors lg:grid-cols-[32px_56px_1fr_64px_88px_54px_62px_62px_92px]",
               selected.includes(m.id) && "bg-secondary/80",
             )}
             onClick={() => navigate(`/library/${m.id}`)}
@@ -111,14 +112,14 @@ export function LibraryPage() {
               {selected.includes(m.id) ? (
                 <CheckSquare size={15} strokeWidth={2} />
               ) : (
-                <Square size={15} strokeWidth={2} className="text-[#c8b890]" />
+                <Square size={15} strokeWidth={2} className="text-muted" />
               )}
             </div>
             <SketchColorBlock color={m.color} style={{ width: 40, height: 22 }} />
             <div className="text-sm font-semibold">{m.name}</div>
-            <div className="text-[13px] font-bold text-muted">{m.code}</div>
-            <div className="text-xs text-muted">{m.brandName}</div>
-            <div className="text-xs text-muted">{m.series}</div>
+            <div className="record-code text-[13px]">{m.code}</div>
+            <div className="hidden text-xs text-muted lg:block">{m.brandName}</div>
+            <div className="hidden text-xs text-muted lg:block">{m.series}</div>
             <div
               className={cn(
                 "text-[13px] font-bold",
@@ -127,8 +128,8 @@ export function LibraryPage() {
             >
               {m.stock} 支
             </div>
-            <div className="text-[13px]">¥{m.price}</div>
-            <div className="text-[11px] text-muted">{m.addDate}</div>
+            <div className="hidden text-[13px] lg:block">¥{m.price}</div>
+            <div className="hidden text-[11px] text-muted lg:block">{m.addDate}</div>
           </div>
         ))}
       </Card>

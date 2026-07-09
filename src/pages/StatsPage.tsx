@@ -4,6 +4,7 @@ import { RoughPieSector } from "@/components/charts/sketch/RoughPieSector";
 import { SeriesBarChart } from "@/components/charts/SeriesBarChart";
 import { chartTooltipStyle } from "@/components/charts/ChartTooltip";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { StatsGrid } from "@/components/ui/StatCard";
 import { useBrands } from "@/hooks/useBrands";
 import { useStatistics } from "@/hooks/useStatistics";
@@ -22,7 +23,11 @@ export function StatsPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-[22px] font-bold">统计分析 📊</h1>
+      <PageHeader
+        title="统计分析 📊"
+        description="用图表看见收藏里的品牌、系列和增长趋势。"
+        meta={`估值 ¥ ${stats.totalValue.toLocaleString()}`}
+      />
 
       <StatsGrid
         columns={4}

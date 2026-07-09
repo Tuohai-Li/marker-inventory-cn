@@ -1,24 +1,68 @@
 /* ===== 书桌 / 封面 / 书页：把整个界面包装成一本摊开的速写本 ===== */
 
 /* 书桌背景（深色木纹感，衬托封面） */
-.book-desk {
+.book-desk,
+.book-desk-scene {
   background:
-    radial-gradient(120% 90% at 50% 0%, rgba(255, 236, 200, 0.14), transparent 55%),
-    linear-gradient(150deg, #9a7c50 0%, #8a6c42 55%, #7c5f38 100%);
+    radial-gradient(120% 88% at 36% 0%, rgba(232, 255, 246, 0.84), transparent 52%),
+    linear-gradient(155deg, #eaf7f2 0%, #f8fbf2 46%, #c9a977 100%);
+}
+
+.book-desk-scene {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--foreground);
+  font-family: var(--font-ui);
+  isolation: isolate;
+}
+
+.book-desk-scene-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.book-desk-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 0;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
 }
 
 /* 牛皮纸封面：包裹内容区，左侧是书脊 */
 .book-cover {
   position: relative;
-  padding: 12px 14px 14px 26px;
-  border-radius: 8px 16px 16px 8px;
-  border: 2px solid #6b5028;
+  padding: 17px 18px 18px 34px;
+  border-radius: 8px 14px 14px 8px;
+  border: 1px solid rgba(61, 83, 63, 0.18);
   background:
-    radial-gradient(130% 100% at 28% 0%, rgba(255, 255, 255, 0.12), transparent 58%),
-    linear-gradient(158deg, #cbaa79 0%, #bd9a66 62%, #b08c58 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(191, 222, 210, 0.12)),
+    rgba(255, 255, 255, 0.04);
   box-shadow:
-    0 16px 34px rgba(48, 32, 12, 0.4),
-    inset 0 0 0 1px rgba(255, 250, 235, 0.16);
+    0 18px 28px rgba(75, 80, 50, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.book-cover::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 23px;
+  bottom: 14px;
+  width: 7px;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(180deg, rgba(255, 254, 245, 0.72), rgba(226, 216, 185, 0.56));
+  box-shadow: inset 3px 0 6px rgba(72, 88, 66, 0.12);
+  pointer-events: none;
 }
 
 /* 书脊装订线（虚线缝线） */
@@ -29,7 +73,7 @@
   top: 16px;
   bottom: 16px;
   width: 0;
-  border-left: 2px dashed rgba(58, 40, 18, 0.5);
+  border-left: 2px dashed rgba(58, 78, 61, 0.34);
   pointer-events: none;
 }
 
@@ -38,6 +82,7 @@
   background-color: var(--sketch-canvas);
   border-radius: 3px 8px 8px 3px;
   box-shadow:
+    inset -10px 0 14px -14px rgba(82, 58, 25, 0.48),
     1.5px 1.5px 0 #e6dabd,
     3px 3px 0 #ddcfae,
     4.5px 4.5px 0 #d3c39d,
@@ -104,13 +149,16 @@
 .sticky-note {
   position: relative;
   color: #2a2310;
-  border: 1.5px solid rgba(42, 35, 16, 0.32);
+  border: 1.5px solid rgba(42, 35, 16, 0.38);
   border-radius: 2px;
-  box-shadow: 1px 2px 5px rgba(50, 35, 10, 0.28);
+  box-shadow:
+    1px 2px 4px rgba(50, 35, 10, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
   transform: rotate(var(--note-rot, 0deg));
   transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
   cursor: pointer;
 }
 
@@ -120,27 +168,50 @@
   position: absolute;
   top: -5px;
   left: 50%;
-  width: 34px;
+  width: 38px;
   height: 9px;
   transform: translateX(-50%) rotate(-2deg);
-  background: rgba(255, 255, 255, 0.45);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.62),
+    rgba(255, 255, 255, 0.2)
+  );
   border: 1px solid rgba(42, 35, 16, 0.14);
+  box-shadow: 0 1px 2px rgba(48, 32, 12, 0.08);
   pointer-events: none;
 }
 
 .sticky-note:hover {
-  transform: rotate(var(--note-rot, 0deg)) translateX(-8px) scale(1.04);
-  box-shadow: 3px 4px 9px rgba(50, 35, 10, 0.32);
+  transform: rotate(var(--note-rot, 0deg)) translateX(-8px) translateY(-2px) scale(1.035);
+  box-shadow:
+    4px 7px 12px rgba(50, 35, 10, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  filter: saturate(1.04);
   z-index: 1;
 }
 
 .sticky-note-active {
-  transform: rotate(0deg) translateX(-10px) scale(1.06);
+  transform: rotate(0deg) translateX(-12px) scale(1.055);
   font-weight: 700;
-  box-shadow: 3px 5px 10px rgba(50, 35, 10, 0.38);
+  box-shadow:
+    5px 8px 14px rgba(50, 35, 10, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
   z-index: 2;
 }
 
 .sticky-note-active:hover {
-  transform: rotate(0deg) translateX(-10px) scale(1.06);
+  transform: rotate(0deg) translateX(-12px) translateY(-1px) scale(1.055);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-note {
+    transition: none;
+  }
+
+  .sticky-note:hover,
+  .sticky-note-active,
+  .sticky-note-active:hover {
+    transform: rotate(var(--note-rot, 0deg));
+  }
 }

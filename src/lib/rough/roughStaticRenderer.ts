@@ -171,8 +171,7 @@ export function mountCachedPieSector(
     const rc = rough.svg(temp);
     const seed = colorSeed(color);
 
-    wrapper.appendChild(
-      rc.path(pathD, {
+    const fillLayer = rc.path(pathD, {
         seed: seed + 1,
         roughness: preset.roughness,
         bowing: preset.bowing,
@@ -184,11 +183,11 @@ export function mountCachedPieSector(
         hachureGap: preset.hachureGap,
         fillWeight: preset.fillWeight,
         ...SINGLE_STROKE,
-      }),
-    );
+      });
+    fillLayer.classList.add("pie-rough-fill");
+    wrapper.appendChild(fillLayer);
 
-    wrapper.appendChild(
-      rc.path(pathD, {
+    const outlineLayer = rc.path(pathD, {
         seed: seed + 2,
         roughness: variant === "tidy" ? 0.65 : 0.8,
         bowing: variant === "tidy" ? 0.6 : 0.9,
@@ -196,8 +195,12 @@ export function mountCachedPieSector(
         stroke: SKETCH_INK,
         fill: "none",
         ...SINGLE_STROKE,
-      }),
-    );
+      });
+    outlineLayer.classList.add("pie-rough-outline");
+    outlineLayer.querySelectorAll("path").forEach((path) => {
+      path.setAttribute("pathLength", "1");
+    });
+    wrapper.appendChild(outlineLayer);
 
     return wrapper;
   });

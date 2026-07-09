@@ -73,12 +73,21 @@
   animation-delay: 0.5s;
 }
 
-.pie-stroke-overlay {
-  animation-duration: 0.48s;
+.pie-rough-sector .pie-rough-fill {
+  opacity: 0;
 }
 
-.pie-fill-after-stroke.sketch-fill-revealed {
-  animation-delay: 0.44s;
+.pie-rough-sector .pie-rough-outline path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.pie-rough-sector.pie-rough-revealed .pie-rough-outline path {
+  animation: sketch-stroke-draw 0.48s cubic-bezier(0.33, 0.12, 0.18, 1) forwards;
+}
+
+.pie-rough-sector.pie-rough-revealed .pie-rough-fill {
+  animation: sketch-fill-in 0.32s ease-out 0.44s forwards;
 }
 
 .sketch-enter {
@@ -131,9 +140,14 @@
 
   .sketch-fill-after-stroke,
   .sketch-fill-after-stroke.sketch-fill-revealed,
-  .pie-fill-after-stroke {
+  .pie-rough-sector .pie-rough-fill {
     animation: none;
     opacity: 1;
+  }
+
+  .pie-rough-sector .pie-rough-outline path {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 
   .sketch-enter,

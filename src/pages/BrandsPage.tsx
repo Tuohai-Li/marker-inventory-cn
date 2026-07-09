@@ -6,6 +6,7 @@ import { AddSeriesModal } from "@/components/features/AddSeriesModal";
 import { SeriesListModal } from "@/components/features/SeriesListModal";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { SketchColorBlock } from "@/components/ui/sketch/SketchColorBlock";
 import { useBrands } from "@/hooks/useBrands";
 import { useSeries } from "@/hooks/useSeries";
@@ -21,17 +22,18 @@ export function BrandsPage() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-[22px] font-bold">品牌与系列 🏷️</h1>
-        <div className="flex gap-2">
+      <PageHeader
+        title="品牌与系列 🏷️"
+        description="把品牌、系列和收藏规模像索引卡一样归档。"
+        actions={<div className="flex gap-2">
           <Button size="sm" onClick={() => setSeriesModalOpen(true)}>
             + 添加系列
           </Button>
           <Button size="sm" onClick={() => setBrandModalOpen(true)}>
             + 添加品牌
           </Button>
-        </div>
-      </div>
+        </div>}
+      />
 
       {loading ? (
         <p className="text-sm text-muted">加载中…</p>
@@ -47,7 +49,7 @@ export function BrandsPage() {
               <div className="grid grid-cols-3 gap-2">
                 <button
                   type="button"
-                  className="cursor-pointer rounded-sm border border-dashed border-[#c8b890] bg-transparent py-1 text-center transition-colors hover:bg-secondary/60"
+                  className="paper-metric cursor-pointer rounded-sm py-1 text-center"
                   onClick={() =>
                     navigate(`/library?brand=${encodeURIComponent(b.name)}`)
                   }
@@ -57,13 +59,13 @@ export function BrandsPage() {
                 </button>
                 <button
                   type="button"
-                  className="cursor-pointer rounded-sm border border-dashed border-[#c8b890] bg-transparent py-1 text-center transition-colors hover:bg-secondary/60"
+                  className="paper-metric cursor-pointer rounded-sm py-1 text-center"
                   onClick={() => setViewingBrand(b)}
                 >
                   <div className="text-[10px] text-muted">系列</div>
                   <div className="text-sm font-bold">{b.seriesCount}个</div>
                 </button>
-                <div className="rounded-sm border border-dashed border-[#c8b890] py-1 text-center">
+                <div className="paper-metric rounded-sm py-1 text-center">
                   <div className="text-[10px] text-muted">均价</div>
                   <div className="text-sm font-bold">¥{b.avgPrice}</div>
                 </div>
@@ -76,7 +78,7 @@ export function BrandsPage() {
             className="flex min-h-[140px] cursor-pointer flex-col items-center justify-center p-3.5"
             onClick={() => setBrandModalOpen(true)}
           >
-            <Plus size={28} strokeWidth={1.5} className="text-[#c8b890]" />
+            <Plus size={28} strokeWidth={1.5} className="text-muted" />
             <span className="mt-1.5 text-[13px] text-muted">添加新品牌</span>
           </Card>
         </div>

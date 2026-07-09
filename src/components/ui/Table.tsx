@@ -5,7 +5,7 @@ import { Card } from "./Card";
 export function Table({ className, children, ...props }: HTMLAttributes<HTMLTableElement>) {
   return (
     <Card className={cn("overflow-hidden", className)} {...props}>
-      <table className="w-full border-collapse">{children}</table>
+      <table className="w-full border-collapse font-ui">{children}</table>
     </Card>
   );
 }
@@ -38,7 +38,7 @@ export function TableRow({
   return (
     <tr
       className={cn(
-        "border-b border-dashed border-[#c8b890] last:border-b-0",
+        "marker-record-row last:border-b-0",
         onClick && "cursor-pointer hover:bg-secondary/60",
         className,
       )}

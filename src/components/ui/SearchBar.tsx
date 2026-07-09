@@ -13,7 +13,7 @@ export function SearchBar({ className, wrapperClassName, ...props }: SearchBarPr
       <Search size={14} strokeWidth={2} className="shrink-0 text-muted" />
       <input
         className={cn(
-          "w-full bg-transparent text-sm font-sketch outline-none placeholder:text-muted",
+          "w-full bg-transparent text-sm font-ui outline-none placeholder:text-muted",
           className,
         )}
         {...props}

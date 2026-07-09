@@ -14,6 +14,7 @@ import { LowStockList } from "@/components/features/LowStockList";
 import { RecentMarkersList } from "@/components/features/RecentMarkersList";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { StatsGrid } from "@/components/ui/StatCard";
 import { useAddMarkerModal } from "@/contexts/AddMarkerModalContext";
 import { useMemos } from "@/hooks/useMemos";
@@ -36,12 +37,11 @@ export function DashboardPage() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">欢迎回来！✏️</h1>
-        <span className="text-xs text-muted">
-          数据最后更新：{new Date().toLocaleString("zh-CN", { hour12: false })}
-        </span>
-      </div>
+      <PageHeader
+        title="欢迎回来！✏️"
+        description="今天的收藏、低库存和快捷操作都放在这张工作页。"
+        meta={`更新：${new Date().toLocaleString("zh-CN", { hour12: false })}`}
+      />
 
       <StatsGrid
         items={[
@@ -72,32 +72,32 @@ export function DashboardPage() {
         ]}
       />
 
-      <div className="mb-4 grid grid-cols-5 gap-3">
-        <div className="col-span-3">
+      <div className="mb-4 grid grid-cols-1 gap-3 lg:grid-cols-5">
+        <div className="lg:col-span-3">
           <RecentMarkersList markers={stats.recent} />
         </div>
-        <div className="col-span-2">
+        <div className="lg:col-span-2">
           <ColorSwatchPanel />
         </div>
       </div>
 
-      <div className="mb-4 grid grid-cols-5 gap-3">
-        <div className="col-span-2">
+      <div className="mb-4 grid grid-cols-1 gap-3 lg:grid-cols-5">
+        <div className="lg:col-span-2">
           <InventoryPieChart
             data={stats.inventoryPie}
             totalLabel={`合计 ${pieTotal} 支`}
             compact
           />
         </div>
-        <div className="col-span-3">
+        <div className="lg:col-span-3">
           <LowStockList markers={stats.lowStockMarkers.slice(0, 5)} />
         </div>
       </div>
 
-      <div className="grid grid-cols-5 gap-3">
-        <Card className="col-span-3 p-3" enterDelay={480}>
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-5">
+        <Card className="p-3 lg:col-span-3" enterDelay={480}>
           <div className="mb-2.5 text-[15px] font-bold">快捷操作</div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             {[
               { icon: Plus, label: "添加马克笔", action: openModal },
               { icon: Archive, label: "批量导入", action: () => navigate("/export") },
@@ -117,13 +117,13 @@ export function DashboardPage() {
           </div>
         </Card>
 
-        <Card className="col-span-2 p-3" enterDelay={560}>
+        <Card className="p-3 lg:col-span-2" enterDelay={560}>
           <div className="mb-2 text-[15px] font-bold">备忘录</div>
           <div className="text-[13px] leading-loose">
             {memos.map((t, i) => (
               <div
                 key={i}
-                className={i < memos.length - 1 ? "border-b border-dashed border-[#c8b890] pb-0.5" : ""}
+                className={i < memos.length - 1 ? "marker-record-row pb-0.5" : ""}
               >
                 {t}
               </div>

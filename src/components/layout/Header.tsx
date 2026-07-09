@@ -21,22 +21,22 @@ export function Header() {
   };
 
   return (
-    <header className="flex h-[52px] shrink-0 items-center gap-3 border-b-2 border-ink bg-sidebar-bg px-4 font-sketch">
-      <div className="mr-4 flex items-center gap-2 text-lg font-bold">
+    <header className="grid shrink-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-2 border-b-2 border-ink bg-sidebar-bg px-3 py-2 font-ui sm:flex sm:h-[56px] sm:gap-3 sm:px-4 sm:py-0">
+      <div className="flex min-w-0 items-center gap-2 font-hand text-base font-bold sm:mr-4 sm:text-lg">
         <Pencil size={20} strokeWidth={2.5} />
         马克笔收藏与库存管理
       </div>
 
       <SearchBar
-        wrapperClassName="max-w-sm flex-1"
+        wrapperClassName="tool-strip order-3 col-span-2 w-full sm:order-none sm:max-w-sm sm:flex-1"
         placeholder="搜索品牌、系列、颜色或笔号…"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={onKeyDown}
       />
 
-      <div className="ml-auto flex items-center gap-2">
-        <Button variant="primary" onClick={openModal}>
+      <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+        <Button variant="primary" className="whitespace-nowrap px-2 text-xs sm:px-3.5 sm:text-sm" onClick={openModal}>
           <Plus size={14} strokeWidth={2.5} /> 添加马克笔
         </Button>
         <Button size="icon" title="库存预警" onClick={() => navigate("/inventory")}>

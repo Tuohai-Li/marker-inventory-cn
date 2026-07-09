@@ -10,6 +10,7 @@ import { EditMarkerModal } from "@/components/features/EditMarkerModal";
 import { RestockModal } from "@/components/features/RestockModal";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { Tag } from "@/components/ui/Tag";
 import { SketchColorBlock } from "@/components/ui/sketch/SketchColorBlock";
 import { useMarkers } from "@/hooks/useMarkers";
@@ -52,12 +53,18 @@ export function DetailPage() {
 
   return (
     <div className="max-w-[700px]">
-      <Button className="mb-4" onClick={() => navigate("/library")}>
+      <Button className="mb-3" onClick={() => navigate("/library")}>
         <ArrowLeft size={14} strokeWidth={2} /> 返回列表
       </Button>
 
+      <PageHeader
+        title={marker.name}
+        description={`${marker.brandName} · ${marker.code}`}
+        meta={`库存 ${marker.stock} 支`}
+      />
+
       <div className="flex gap-4">
-        <Card className="w-[180px] shrink-0 p-4">
+        <Card className="w-[180px] shrink-0 p-4 text-center">
           <SketchColorBlock
             color={marker.color}
             style={{ width: "100%", aspectRatio: "1/1.4", marginBottom: 10 }}
@@ -68,11 +75,7 @@ export function DetailPage() {
 
         <div className="flex-1">
           <Card className="mb-3 p-3.5">
-            <h2 className="mb-0.5 text-2xl font-bold">{marker.name}</h2>
-            <div className="text-base text-muted">
-              {marker.brandName} · {marker.code}
-            </div>
-            <div className="mt-3 flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Tag>{marker.series} 系列</Tag>
               <Tag variant={marker.stock <= 1 ? "warning" : "success"}>
                 库存 {marker.stock} 支
@@ -85,7 +88,7 @@ export function DetailPage() {
             {details.map(([k, v]) => (
               <div
                 key={k}
-                className="flex border-b border-dashed border-[#c8b890] py-1 text-sm last:border-b-0"
+                className="marker-record-row flex py-1.5 text-sm"
               >
                 <span className="w-[100px] shrink-0 text-muted">{k}</span>
                 <span className="font-semibold">{v}</span>

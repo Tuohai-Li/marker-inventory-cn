@@ -1,4 +1,5 @@
 import { LowStockList } from "@/components/features/LowStockList";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { StatsGrid } from "@/components/ui/StatCard";
 import { useStatistics } from "@/hooks/useStatistics";
 
@@ -11,7 +12,11 @@ export function InventoryPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-[22px] font-bold">库存管理 📦</h1>
+      <PageHeader
+        title="库存管理 📦"
+        description="优先处理低库存和借出状态，避免常用颜色断档。"
+        meta={`${stats.lowStockCount} 支需关注`}
+      />
 
       <StatsGrid
         columns={4}

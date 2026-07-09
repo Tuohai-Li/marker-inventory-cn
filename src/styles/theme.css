@@ -30,9 +30,17 @@
   --sketch-sidebar: #ede5cc;
   --sketch-muted: #7a6a50;
   --sketch-input-bg: #ede5cc;
+  --sketch-rule: #c8b890;
+  --sketch-rule-soft: rgba(200, 184, 144, 0.72);
+  --sketch-paper-edge: #e4d6b4;
+  --sketch-success: #4f8a5f;
+  --sketch-warning: #b86b3e;
+  --sketch-info: #5c7894;
   --sketch-shadow-offset: 2.5px;
   --sketch-stroke-width: 2;
-  --sketch-font-family: "Le Mi Crayon", "Caveat", "Ma Shan Zheng", cursive;
+  --font-hand: "Le Mi Crayon", "Caveat", "Ma Shan Zheng", cursive;
+  --font-ui: "Microsoft YaHei UI", "Noto Sans SC", "Source Han Sans SC", sans-serif;
+  --sketch-font-family: var(--font-hand);
 }
 
 @theme inline {
@@ -84,16 +92,134 @@
 
   body {
     @apply bg-canvas text-foreground;
-    font-family: var(--sketch-font-family);
+    font-family: var(--font-ui);
   }
 }
 
 @layer utilities {
+  .font-hand {
+    font-family: var(--font-hand);
+  }
+
+  .font-ui {
+    font-family: var(--font-ui);
+  }
+
   .font-sketch {
-    font-family: var(--sketch-font-family);
+    font-family: var(--font-hand);
+  }
+
+  .ui-copy {
+    font-family: var(--font-ui);
+    letter-spacing: 0;
   }
 
   .sketch-row {
     border-bottom: 1.5px dashed var(--sketch-ink);
+  }
+
+  .paper-rule {
+    border-color: var(--sketch-rule);
+  }
+
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid color-mix(in srgb, var(--sketch-ink) 82%, transparent);
+  }
+
+  .page-title {
+    font-family: var(--font-hand);
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .page-kicker {
+    margin-top: 0.2rem;
+    color: var(--sketch-muted);
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .tool-strip {
+    background:
+      linear-gradient(180deg, rgba(255, 254, 245, 0.68), rgba(232, 221, 192, 0.52)),
+      var(--sketch-paper);
+    border: 1px solid var(--sketch-rule-soft);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.35) inset,
+      1px 2px 0 rgba(112, 84, 38, 0.1);
+  }
+
+  .marker-record-row {
+    position: relative;
+    border-bottom: 1px dashed var(--sketch-rule);
+    transition:
+      background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .marker-record-row:hover {
+    background-color: color-mix(in srgb, var(--secondary) 48%, transparent);
+  }
+
+  .marker-record-row:last-child {
+    border-bottom: 0;
+  }
+
+  .record-code {
+    font-family: var(--font-hand);
+    font-weight: 700;
+    color: var(--foreground);
+  }
+
+  .record-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid color-mix(in srgb, var(--sketch-ink) 72%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--sketch-paper) 72%, var(--secondary));
+    color: var(--sketch-muted);
+    font-family: var(--font-hand);
+  }
+
+  .paper-metric {
+    border: 1px dashed var(--sketch-rule);
+    background: color-mix(in srgb, var(--sketch-paper) 70%, transparent);
+    transition:
+      background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .paper-metric:hover {
+    background: color-mix(in srgb, var(--secondary) 58%, var(--sketch-paper));
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marker-record-row,
+    .paper-metric {
+      transition: none;
+    }
+
+    .paper-metric:hover {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .recharts-pie-label-text,
+    .recharts-pie-label-line {
+      display: none;
+    }
   }
 }

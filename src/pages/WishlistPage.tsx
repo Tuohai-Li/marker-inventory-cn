@@ -3,6 +3,7 @@ import { CheckSquare, Square } from "lucide-react";
 import { AddWishModal } from "@/components/features/AddWishModal";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { Tag } from "@/components/ui/Tag";
 import { SketchColorBlock } from "@/components/ui/sketch/SketchColorBlock";
 import { cn } from "@/lib/cn";
@@ -50,10 +51,11 @@ export function WishlistPage() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-[22px] font-bold">心愿清单 ❤️</h1>
-        <Button size="sm" onClick={() => setAddOpen(true)}>+ 添加心愿</Button>
-      </div>
+      <PageHeader
+        title="心愿清单 ❤️"
+        description="先把想买的颜色贴在这里，等预算和库存合适再入库。"
+        actions={<Button size="sm" onClick={() => setAddOpen(true)}>+ 添加心愿</Button>}
+      />
 
       <Card className="mb-3 p-3.5">
         <div className="mb-1 text-[13px] text-muted">
@@ -72,8 +74,7 @@ export function WishlistPage() {
             <div
               key={w.id}
               className={cn(
-                "flex items-center gap-2.5 px-3.5 py-2.5",
-                i < items.length - 1 && "border-b border-dashed border-[#c8b890]",
+                "marker-record-row flex items-center gap-2.5 px-3.5 py-2.5 font-ui",
                 checked.includes(w.id) && "bg-secondary/80",
               )}
             >
@@ -85,12 +86,12 @@ export function WishlistPage() {
                 {checked.includes(w.id) ? (
                   <CheckSquare size={16} strokeWidth={2} className="text-[#5a8c6a]" />
                 ) : (
-                  <Square size={16} strokeWidth={2} className="text-[#c8b890]" />
+                  <Square size={16} strokeWidth={2} className="text-muted" />
                 )}
               </button>
               <SketchColorBlock color={w.color} style={{ width: 36, height: 22 }} />
               <span className="w-[90px] text-[13px] text-muted">{w.brandName}</span>
-              <span className="w-11 text-sm font-bold">{w.code}</span>
+              <span className="record-code w-11 text-sm">{w.code}</span>
               <span className="flex-1 text-[13px]">{w.name}</span>
               <Tag variant={priorityVariant[w.priority]}>{priorityLabel[w.priority]}</Tag>
               <span className="w-[52px] text-right text-sm font-bold">¥ {w.price}</span>

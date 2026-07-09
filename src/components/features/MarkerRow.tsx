@@ -20,24 +20,24 @@ export function MarkerRow({
   return (
     <div
       className={cn(
-        "flex cursor-pointer items-center gap-2.5 border-b border-dashed border-[#c8b890] py-1.5 last:border-b-0",
+        "marker-record-row flex cursor-pointer items-center gap-2.5 py-2 font-ui",
         className,
       )}
       onClick={onClick}
     >
-      <SketchColorBlock color={marker.color} style={{ width: 32, height: 20 }} />
+      <SketchColorBlock color={marker.color} style={{ width: 38, height: 24 }} />
       <span className="w-20 shrink-0 text-[13px] text-muted">{marker.brandName}</span>
-      <span className="w-9 text-sm font-bold">{marker.code}</span>
+      <span className="record-code w-10 text-sm">{marker.code}</span>
       <span className="flex-1 text-[13px]">{marker.name}</span>
       {showSeries && (
-        <span className="rounded-full border border-ink px-2 py-0.5 text-[11px] text-muted">
+        <span className="record-pill px-2 py-0.5 text-[11px]">
           {marker.series} 系列
         </span>
       )}
       {showStock && (
         <span
           className={cn(
-            "text-[13px] font-bold",
+            "record-pill px-2 py-0.5 text-[11px]",
             marker.stock <= 1 ? "text-destructive" : "text-[#c87050]",
           )}
         >

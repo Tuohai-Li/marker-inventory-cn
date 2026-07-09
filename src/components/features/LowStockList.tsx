@@ -45,7 +45,7 @@ export function LowStockList({
             <div
               key={m.id}
               className={cn(
-                "flex items-center gap-2 border-b border-dashed border-[#c8b890] py-1.5 last:border-b-0",
+                "marker-record-row flex items-center gap-2 font-ui",
                 compact ? "py-2" : "",
               )}
             >
@@ -61,7 +61,7 @@ export function LowStockList({
               <span className="flex-1 text-[13px]">{m.name}</span>
               <span
                 className={cn(
-                  "text-[13px] font-bold",
+                  "record-pill px-2 py-0.5 text-[11px]",
                   m.stock <= 1 ? "text-destructive" : "text-[#c87050]",
                 )}
               >

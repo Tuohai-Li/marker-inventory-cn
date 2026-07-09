@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AddPurchaseModal } from "@/components/features/AddPurchaseModal";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "@/components/ui/Table";
 import { usePurchases } from "@/hooks/usePurchases";
 
@@ -15,12 +16,13 @@ export function PurchasesPage() {
 
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-[22px] font-bold">购买记录 🛒</h1>
-        <Button size="sm" onClick={() => setAddOpen(true)}>+ 添加记录</Button>
-      </div>
+      <PageHeader
+        title="购买记录 🛒"
+        description="记录每次入手的品牌、数量和花费。"
+        actions={<Button size="sm" onClick={() => setAddOpen(true)}>+ 添加记录</Button>}
+      />
 
-      <div className="mb-4 grid grid-cols-3 gap-3">
+      <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
         {[
           { label: "累计消费", value: `¥ ${totalSpent}` },
           { label: "本月消费", value: `¥ ${thisMonthSpend}` },
@@ -37,22 +39,22 @@ export function PurchasesPage() {
         <TableHead>
           <tr>
             <TableHeaderCell>日期</TableHeaderCell>
-            <TableHeaderCell>品牌</TableHeaderCell>
+            <TableHeaderCell className="hidden md:table-cell">品牌</TableHeaderCell>
             <TableHeaderCell>购买内容</TableHeaderCell>
-            <TableHeaderCell>数量</TableHeaderCell>
+            <TableHeaderCell className="hidden sm:table-cell">数量</TableHeaderCell>
             <TableHeaderCell>金额</TableHeaderCell>
-            <TableHeaderCell>备注</TableHeaderCell>
+            <TableHeaderCell className="hidden lg:table-cell">备注</TableHeaderCell>
           </tr>
         </TableHead>
         <TableBody>
           {purchases.map((p) => (
             <TableRow key={p.id}>
               <TableCell className="text-muted">{p.date}</TableCell>
-              <TableCell className="font-semibold">{p.brandName}</TableCell>
+              <TableCell className="hidden font-semibold md:table-cell">{p.brandName}</TableCell>
               <TableCell>{p.items}</TableCell>
-              <TableCell className="text-center">{p.qty}</TableCell>
+              <TableCell className="hidden text-center sm:table-cell">{p.qty}</TableCell>
               <TableCell className="font-bold text-[#5a3a1a]">¥ {p.amount}</TableCell>
-              <TableCell className="text-xs text-muted">{p.note}</TableCell>
+              <TableCell className="hidden text-xs text-muted lg:table-cell">{p.note}</TableCell>
             </TableRow>
           ))}
         </TableBody>

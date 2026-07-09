@@ -24,7 +24,7 @@ export function RecentMarkersList({
           查看全部 →
         </Button>
       </div>
-      <div>
+      <div className="ui-copy">
         {markers.map((m) => (
           <MarkerRow
             key={m.id}

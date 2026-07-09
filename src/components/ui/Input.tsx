@@ -9,7 +9,7 @@ export function Input({ className, ...props }: InputProps) {
     <RoughBox variant="input" className="w-full">
       <input
         className={cn(
-          "w-full bg-transparent px-2.5 py-1.5 text-sm font-sketch outline-none placeholder:text-muted",
+          "w-full bg-transparent px-2.5 py-1.5 text-sm font-ui outline-none placeholder:text-muted",
           className,
         )}
         {...props}

@@ -4,6 +4,7 @@ import type { AppSettings } from "@/types";
 import { EditSettingModal } from "@/components/features/EditSettingModal";
 import { Button } from "@/components/ui/Button";
 import { Card, CardHeader } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { useAppSettings } from "@/hooks/useAppSettings";
 
 type SettingKey = keyof AppSettings | "export";
@@ -61,14 +62,17 @@ export function SettingsPage() {
 
   return (
     <div className="max-w-[600px]">
-      <h1 className="mb-4 text-[22px] font-bold">设置 ⚙️</h1>
+      <PageHeader
+        title="设置 ⚙️"
+        description="调整语言、备份和提醒，让这本收藏本按你的习惯工作。"
+      />
       {settingsGroups.map(({ group, items }) => (
         <Card key={group} className="mb-3 p-3.5">
           <CardHeader>{group}</CardHeader>
           {items.map(({ key, label }) => (
             <div
               key={key}
-              className="flex items-center justify-between border-b border-dashed border-[#c8b890] py-2 last:border-b-0"
+              className="marker-record-row flex items-center justify-between py-2"
             >
               <span className="text-sm">{label}</span>
               <div className="flex items-center gap-2">

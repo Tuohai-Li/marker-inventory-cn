@@ -2,6 +2,7 @@ import { BrandBarChart } from "@/components/charts/BrandBarChart";
 import { RoughChartBar } from "@/components/charts/sketch/RoughChartBar";
 import { RecentMarkersList } from "@/components/features/RecentMarkersList";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { StatsGrid } from "@/components/ui/StatCard";
 import { useStatistics } from "@/hooks/useStatistics";
 
@@ -16,7 +17,11 @@ export function OverviewPage() {
 
   return (
     <div>
-      <h1 className="mb-4 text-[22px] font-bold">收藏总览 🗂️</h1>
+      <PageHeader
+        title="收藏总览 🗂️"
+        description="把收藏数量、品牌分布和最近入库记录收在这一页。"
+        meta={`${stats.totalStock} 支马克笔`}
+      />
 
       <StatsGrid
         columns={4}

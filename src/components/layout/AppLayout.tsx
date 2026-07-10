@@ -43,16 +43,16 @@ export function AppLayout() {
     <Book pageCount={BOOK_PAGE_COUNT}>
       <BookDeskScene>
         <Header />
-        <div className="flex min-h-0 flex-1">
-          <div className="flex min-w-0 flex-1 p-4 pr-1">
+        <div className="book-workspace flex min-h-0 flex-1">
+          <div className="book-shell-wrap flex min-w-0 flex-1 p-4 pr-1">
             <div className="book-cover flex min-w-0 flex-1">
               <MainContent />
             </div>
           </div>
           <StickyNotes />
         </div>
-        <AddMarkerModal />
       </BookDeskScene>
+      <AddMarkerModal />
     </Book>
   );
 }

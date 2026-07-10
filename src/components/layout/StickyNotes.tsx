@@ -22,7 +22,7 @@ export function StickyNotes() {
   const location = useLocation();
 
   return (
-    <aside className="relative z-40 flex w-[128px] shrink-0 flex-col justify-center gap-2 overflow-y-auto py-3 pl-0.5 pr-2.5 font-hand">
+    <aside className="sticky-notes relative z-40 flex w-[118px] shrink-0 flex-col justify-center gap-2 overflow-y-auto py-3 pl-0.5 pr-2.5 font-hand">
       {navigation.map(({ path, label, icon: Icon, end }, i) => {
         const isActive = end
           ? location.pathname === path

@@ -1,21 +1,27 @@
-/* ===== 书桌 / 封面 / 书页：把整个界面包装成一本摊开的速写本 ===== */
+/* Oil-painted window scene and interactive loose-leaf notebook. */
 
-/* 书桌背景（深色木纹感，衬托封面） */
 .book-desk,
 .book-desk-scene {
   background:
-    radial-gradient(120% 88% at 36% 0%, rgba(232, 255, 246, 0.84), transparent 52%),
-    linear-gradient(155deg, #eaf7f2 0%, #f8fbf2 46%, #c9a977 100%);
+    radial-gradient(90% 72% at 50% 8%, rgba(227, 239, 235, 0.94), transparent 68%),
+    linear-gradient(180deg, #c8dcd9 0%, #94ad9e 48%, #a77c59 100%);
 }
 
 .book-desk-scene {
+  --book-stage-width: min(96vw, 1280px);
+  --book-stage-height: min(84vh, 820px);
+  --book-stage-y: 8vh;
+  --book-stage-scale: 0.82;
+  --book-stage-tilt: 4deg;
   position: relative;
-  display: flex;
+  display: grid;
   height: 100vh;
+  place-items: center;
   overflow: hidden;
   color: var(--foreground);
   font-family: var(--font-ui);
   isolation: isolate;
+  perspective: 1500px;
 }
 
 .book-desk-scene-canvas {
@@ -30,73 +36,162 @@
 
 .book-desk-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
+  flex: none;
+  width: var(--book-stage-width);
+  height: var(--book-stage-height);
   min-height: 0;
-  width: 100%;
-  flex: 1;
   flex-direction: column;
+  transform: translate3d(0, var(--book-stage-y), 0) rotateX(var(--book-stage-tilt))
+    scale(var(--book-stage-scale));
+  transform-origin: center bottom;
+  transition:
+    width 820ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 820ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 820ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 820ms ease;
+  will-change: transform;
 }
 
-/* 牛皮纸封面：包裹内容区，左侧是书脊 */
+.book-surface-stage-inner {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  overflow: visible;
+  border: 1px solid rgba(63, 76, 58, 0.24);
+  border-radius: 6px;
+  background: rgba(242, 236, 218, 0.88);
+  box-shadow:
+    0 26px 50px rgba(42, 48, 36, 0.22),
+    0 7px 14px rgba(60, 42, 27, 0.22);
+}
+
+.book-surface-stage-inner > header {
+  border-radius: 6px 6px 0 0;
+  background:
+    linear-gradient(95deg, rgba(117, 143, 121, 0.14), transparent 42%),
+    rgba(245, 240, 225, 0.96);
+}
+
+.book-desk-scene[data-focus-mode="focus"] {
+  --book-stage-width: min(100vw, 1480px);
+  --book-stage-height: 100vh;
+  --book-stage-y: 0px;
+  --book-stage-scale: 1;
+  --book-stage-tilt: 0deg;
+}
+
+.book-focus-toggle {
+  position: absolute;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1.5px solid rgba(49, 65, 54, 0.72);
+  border-radius: 50%;
+  background: rgba(244, 239, 222, 0.94);
+  color: #30413b;
+  box-shadow:
+    0 5px 12px rgba(42, 48, 36, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.book-focus-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.book-focus-toggle:hover {
+  transform: translateY(-2px);
+  background: #f8f2df;
+  box-shadow: 0 8px 16px rgba(42, 48, 36, 0.24);
+}
+
+.book-focus-toggle:focus-visible {
+  outline: 3px solid rgba(71, 111, 96, 0.42);
+  outline-offset: 3px;
+}
+
 .book-cover {
   position: relative;
-  padding: 17px 18px 18px 34px;
-  border-radius: 8px 14px 14px 8px;
-  border: 1px solid rgba(61, 83, 63, 0.18);
+  padding: 16px 18px 18px 40px;
+  border: 1px solid rgba(61, 83, 63, 0.26);
+  border-radius: 5px 8px 8px 5px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(191, 222, 210, 0.12)),
-    rgba(255, 255, 255, 0.04);
+    repeating-linear-gradient(
+      4deg,
+      rgba(255, 255, 255, 0.12) 0 5px,
+      rgba(98, 122, 101, 0.035) 5px 9px
+    ),
+    #788e78;
   box-shadow:
-    0 18px 28px rgba(75, 80, 50, 0.14),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    0 18px 28px rgba(54, 58, 43, 0.26),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .book-cover::after {
   content: "";
   position: absolute;
-  right: 8px;
-  top: 23px;
-  bottom: 14px;
-  width: 7px;
-  border-radius: 0 10px 10px 0;
-  background: linear-gradient(180deg, rgba(255, 254, 245, 0.72), rgba(226, 216, 185, 0.56));
-  box-shadow: inset 3px 0 6px rgba(72, 88, 66, 0.12);
+  right: 7px;
+  bottom: 7px;
+  left: 34px;
+  height: 8px;
+  border-radius: 0 0 6px 3px;
+  background: repeating-linear-gradient(180deg, #e9e1cc 0 1px, #cdbf9f 1px 2px);
+  box-shadow: 0 3px 5px rgba(57, 44, 27, 0.18);
   pointer-events: none;
 }
 
-/* 书脊装订线（虚线缝线） */
 .book-cover::before {
   content: "";
   position: absolute;
-  left: 11px;
-  top: 16px;
-  bottom: 16px;
-  width: 0;
-  border-left: 2px dashed rgba(58, 78, 61, 0.34);
+  z-index: 3;
+  top: 20px;
+  bottom: 20px;
+  left: -3px;
+  width: 38px;
+  background:
+    radial-gradient(
+        circle at 28px 14px,
+        transparent 0 6px,
+        rgba(75, 77, 70, 0.95) 6.5px 8px,
+        rgba(210, 207, 194, 0.92) 8.5px 10px,
+        transparent 10.5px
+      )
+      0 0 / 38px 46px repeat-y;
+  filter: drop-shadow(1px 2px 1px rgba(35, 33, 29, 0.25));
   pointer-events: none;
 }
 
-/* 当前书页：右下叠出纸页边缘，左侧有书脊内阴影 */
 .book-page {
+  border-radius: 3px 7px 7px 3px;
   background-color: var(--sketch-canvas);
-  border-radius: 3px 8px 8px 3px;
   box-shadow:
-    inset -10px 0 14px -14px rgba(82, 58, 25, 0.48),
-    1.5px 1.5px 0 #e6dabd,
-    3px 3px 0 #ddcfae,
-    4.5px 4.5px 0 #d3c39d,
-    7px 9px 16px rgba(58, 40, 16, 0.3),
-    inset 16px 0 22px -16px rgba(74, 52, 24, 0.34);
+    inset -10px 0 14px -14px rgba(82, 58, 25, 0.36),
+    1.5px 1.5px 0 #e6dbc2,
+    3px 3px 0 #d9ccb0,
+    5px 6px 11px rgba(58, 40, 16, 0.24),
+    inset 12px 0 18px -17px rgba(74, 52, 24, 0.26);
 }
 
-/* 滚动条两侧预留等宽间距，使内容居中位置一致 */
 .book-scroll {
   scrollbar-gutter: stable both-edges;
 }
 
-/* ===== StPageFlip 翻页书 ===== */
-
+/* react-pageflip keeps the existing DOM interactive. */
 .book-st-pageflip-host {
   position: absolute;
   inset: 0;
@@ -112,7 +207,6 @@
   box-sizing: border-box;
 }
 
-/* 填满主内容区，避免单页模式居中缩成窄条 */
 .book-st-pageflip-host .stf__parent {
   width: 100% !important;
   height: 100% !important;
@@ -131,7 +225,6 @@
   height: 100%;
 }
 
-/* StPageFlip hover/flip temporary pages are reinserted DOM; keep sketches in their final state there. */
 .book-st-pageflip-host .book-flip-page:not(.--simple) .sketch-stroke-draw {
   animation: none !important;
   stroke-dashoffset: 0;
@@ -144,13 +237,12 @@
   opacity: 1;
 }
 
-/* ===== 右侧便笺贴导航 ===== */
-
+/* Page-edge navigation tabs. */
 .sticky-note {
   position: relative;
-  color: #2a2310;
   border: 1.5px solid rgba(42, 35, 16, 0.38);
   border-radius: 2px;
+  color: #2a2310;
   box-shadow:
     1px 2px 4px rgba(50, 35, 10, 0.24),
     inset 0 1px 0 rgba(255, 255, 255, 0.28);
@@ -162,7 +254,6 @@
   cursor: pointer;
 }
 
-/* 顶部胶带 */
 .sticky-note::before {
   content: "";
   position: absolute;
@@ -170,34 +261,34 @@
   left: 50%;
   width: 38px;
   height: 9px;
-  transform: translateX(-50%) rotate(-2deg);
+  border: 1px solid rgba(42, 35, 16, 0.14);
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.16),
     rgba(255, 255, 255, 0.62),
     rgba(255, 255, 255, 0.2)
   );
-  border: 1px solid rgba(42, 35, 16, 0.14);
   box-shadow: 0 1px 2px rgba(48, 32, 12, 0.08);
+  transform: translateX(-50%) rotate(-2deg);
   pointer-events: none;
 }
 
 .sticky-note:hover {
-  transform: rotate(var(--note-rot, 0deg)) translateX(-8px) translateY(-2px) scale(1.035);
+  z-index: 1;
+  filter: saturate(1.04);
   box-shadow:
     4px 7px 12px rgba(50, 35, 10, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.32);
-  filter: saturate(1.04);
-  z-index: 1;
+  transform: rotate(var(--note-rot, 0deg)) translateX(-8px) translateY(-2px) scale(1.035);
 }
 
 .sticky-note-active {
-  transform: rotate(0deg) translateX(-12px) scale(1.055);
+  z-index: 2;
   font-weight: 700;
   box-shadow:
     5px 8px 14px rgba(50, 35, 10, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  z-index: 2;
+  transform: rotate(0deg) translateX(-12px) scale(1.055);
 }
 
 .sticky-note-active:hover {
@@ -205,6 +296,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .book-desk-content,
+  .book-focus-toggle,
   .sticky-note {
     transition: none;
   }
@@ -213,5 +306,80 @@
   .sticky-note-active,
   .sticky-note-active:hover {
     transform: rotate(var(--note-rot, 0deg));
+  }
+}
+
+@media (max-width: 680px) {
+  .book-desk-scene {
+    --book-stage-width: 100vw;
+    --book-stage-height: 100vh;
+    --book-stage-y: 0px;
+    --book-stage-scale: 1;
+    --book-stage-tilt: 0deg;
+  }
+
+  .book-surface-stage-inner {
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  .book-workspace {
+    flex-direction: column;
+  }
+
+  .book-shell-wrap {
+    min-height: 0;
+    padding: 7px 7px 0;
+  }
+
+  .book-cover {
+    min-height: 0;
+    padding: 11px 8px 12px 28px;
+  }
+
+  .book-cover::before {
+    left: -9px;
+    width: 34px;
+    background-position-x: -3px;
+    background-size: 34px 42px;
+  }
+
+  .sticky-notes {
+    width: 100%;
+    min-height: 56px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 7px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 7px 58px max(7px, env(safe-area-inset-bottom)) 8px;
+    scrollbar-width: none;
+  }
+
+  .sticky-notes::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sticky-notes .sticky-note {
+    width: auto;
+    min-width: 74px;
+    flex: 0 0 auto;
+    justify-content: center;
+  }
+
+  .sticky-notes > div.sticky-note {
+    display: none;
+  }
+
+  .sticky-note:hover,
+  .sticky-note-active,
+  .sticky-note-active:hover {
+    transform: rotate(0deg) translateY(-2px);
+  }
+
+  .book-focus-toggle {
+    right: max(9px, env(safe-area-inset-right));
+    bottom: max(9px, env(safe-area-inset-bottom));
   }
 }

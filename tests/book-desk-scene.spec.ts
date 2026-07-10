@@ -1,4 +1,21 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+interface SceneDiagnostics {
+  pose: "overview" | "focus";
+  drawCalls: number;
+  triangles: number;
+  motionTick: number;
+  reducedMotion: boolean;
+  animationActive: boolean;
+}
+
+async function readDiagnostics(page: Page) {
+  return page.evaluate(() =>
+    (window as typeof window & {
+      __BOOK_SCENE_DIAGNOSTICS__?: SceneDiagnostics;
+    }).__BOOK_SCENE_DIAGNOSTICS__,
+  );
+}
 
 test("renders the 3D desk scene behind the existing interactive book", async ({ page }) => {
   await page.goto("/");
@@ -11,6 +28,12 @@ test("renders the 3D desk scene behind the existing interactive book", async ({ 
   await expect(canvas).toBeVisible();
   await expect(content).toBeVisible();
   await expect(page.locator(".book-page")).toBeVisible();
+  await expect(scene).toHaveAttribute("data-focus-mode", "overview");
+  await expect(page.getByTestId("book-surface-stage")).toBeVisible();
+  await expect(page.getByTestId("book-focus-toggle")).toHaveAttribute(
+    "aria-pressed",
+    "false",
+  );
 
   await expect(canvas).toHaveCSS("pointer-events", "none");
   await expect(canvas).toHaveAttribute("aria-hidden", "true");
@@ -70,6 +93,35 @@ test("renders the 3D desk scene behind the existing interactive book", async ({ 
   await expect(page.locator(".book-page")).toBeVisible();
 });
 
+test("focuses the loose-leaf notebook without blocking its DOM controls", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const scene = page.getByTestId("book-desk-scene");
+  const toggle = page.getByTestId("book-focus-toggle");
+
+  await expect(scene).toHaveAttribute("data-focus-mode", "overview");
+  await toggle.click();
+  await expect(scene).toHaveAttribute("data-focus-mode", "focus");
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+
+  await page.locator("header input").first().fill("Copic");
+  await page.locator("header input").first().press("Enter");
+  await expect(page).toHaveURL(/\/library\?q=Copic$/);
+  await expect(page.locator(".book-page")).toBeVisible();
+
+  const diagnostics = await readDiagnostics(page);
+  expect(diagnostics).toBeDefined();
+  expect(diagnostics?.pose).toBe("focus");
+  expect(diagnostics?.drawCalls).toBeLessThan(120);
+  expect(diagnostics?.triangles).toBeLessThan(250_000);
+
+  await page.keyboard.press("Escape");
+  await expect(scene).toHaveAttribute("data-focus-mode", "overview");
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+});
+
 test("keeps the 3D scene and book content usable on a narrow viewport", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
@@ -87,4 +139,34 @@ test("keeps the 3D scene and book content usable on a narrow viewport", async ({
   expect(canvasBox?.height).toBeGreaterThan(700);
   expect(pageBox?.width).toBeGreaterThan(180);
   expect(pageBox?.height).toBeGreaterThan(500);
+
+  await page.getByTestId("book-focus-toggle").click();
+  await expect(page.getByTestId("book-desk-scene")).toHaveAttribute(
+    "data-focus-mode",
+    "focus",
+  );
+  await expect(page.getByTestId("book-surface-stage")).toBeInViewport();
+});
+
+test("stops environmental motion when reduced motion is requested", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  await expect
+    .poll(async () => (await readDiagnostics(page))?.reducedMotion)
+    .toBe(true);
+
+  const before = await readDiagnostics(page);
+  await page.waitForTimeout(250);
+  const after = await readDiagnostics(page);
+
+  expect(before?.animationActive).toBe(false);
+  expect(after?.animationActive).toBe(false);
+  expect(after?.motionTick).toBe(before?.motionTick);
+
+  await page.getByTestId("book-focus-toggle").click();
+  await expect(page.getByTestId("book-desk-scene")).toHaveAttribute(
+    "data-focus-mode",
+    "focus",
+  );
 });

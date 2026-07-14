@@ -38,7 +38,7 @@ const cornerDistancePatch = {
 };
 
 const cornerOnlyUserTouchPatch = {
-  marker: "startUserTouch(pos) {\n        this.mousePosition = pos; // Save touch position",
+  marker: "startUserTouch(pos) {\n        if (this.getState() === \"fold_corner\")",
   search:
     /    startUserTouch\(pos\) \{\r?\n        if \(this\.app\.getSettings\(\)\.disableFlipByClick && !this\.flipController\.isPointOnCorners\(pos\)\)\r?\n            return;\r?\n        this\.mousePosition = pos; \/\/ Save touch position\r?\n        this\.isUserTouch = true;\r?\n        this\.isUserMove = false;\r?\n    \}/,
   replace:

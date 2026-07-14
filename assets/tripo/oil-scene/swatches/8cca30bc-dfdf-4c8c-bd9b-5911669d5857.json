@@ -1,0 +1,42 @@
+{
+  "task_id": "8cca30bc-dfdf-4c8c-bd9b-5911669d5857",
+  "type": "text_to_model",
+  "status": "success",
+  "input": {
+    "prompt": "exactly six flat rounded-rectangle artist color swatch cards arranged as a single 120-degree hand fan on one shared plane, each card radiating from one small central brass pivot rivet, all six full colored front faces visibly spread and readable, each card a different muted sage coral blue mustard lavender or blush paint sample, thick matte paper edges, hand-painted oil illustration style translated into clean game-ready 3D, centered at origin, isolated object, no readable text, no logo, no stand",
+    "negative_prompt": "vertical pile, book stack, folded cloth, overlapping hidden faces, cards folded over each other, photorealistic, glossy plastic, letters, numbers, logo, watermark, background, floor, display stand, floating cards far apart",
+    "model_version": "v3.1-20260211",
+    "texture": true,
+    "pbr": true,
+    "texture_quality": "detailed",
+    "texture_alignment": "geometry",
+    "auto_size": true,
+    "smart_low_poly": true,
+    "export_uv": true,
+    "face_limit": 10000,
+    "compress": "meshopt",
+    "geometry_quality": "detailed"
+  },
+  "output": {
+    "pbr_model": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/8cca30bc-dfdf-4c8c-bd9b-5911669d5857/tripo_pbr_model_8cca30bc-dfdf-4c8c-bd9b-5911669d5857.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvOGNjYTMwYmMtZGZkZi00YzhjLWJkOWItNTkxMTY2OWQ1ODU3L3RyaXBvX3Bicl9tb2RlbF84Y2NhMzBiYy1kZmRmLTRjOGMtYmQ5Yi01OTExNjY5ZDU4NTcuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=XKSs6mFxVbUSLxO3H4dQkSNh3-nhBb75AIroTmTDdKM08DNAmgz1HZSD6y88l6~y~4E9BZHwswLqxzpTAwC5kmoHf3tOKsL4yIdQZnrEHrisLIttM5dzKij2gvDHKI4QwC~wiEB~4OxyuO3ZzfQFwFKcPtozjePWeZZ8pYM~AbsQeumoZbHI-r5CcEozsE~tc~tOwiPggDJvFsdxIpPN9hovme~AtSc5Giu5sCjydGU~tXw-grq2uRpM5Fh0DB~LAyd5NX9niPA6iK4zbIogJHCZMpL02i6iWv1o51HLvnxeY~wpaaA3sMb2Ma7uUFa1LlGZF1PgXQa6Ykv2AwYQMg__",
+    "generated_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/8cca30bc-dfdf-4c8c-bd9b-5911669d5857/text2image_8cca30bc-dfdf-4c8c-bd9b-5911669d5857.jpeg?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvOGNjYTMwYmMtZGZkZi00YzhjLWJkOWItNTkxMTY2OWQ1ODU3L3RleHQyaW1hZ2VfOGNjYTMwYmMtZGZkZi00YzhjLWJkOWItNTkxMTY2OWQ1ODU3LmpwZWciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=ORJFA1rOsRpajEykvljWXTKiI8qVgduaAl6Bby~KXudQRy-XZtohACiwQuA7wsbFb-PWlBBvi6tTa4jQvM2lsw9K2oIceAjyuGPVytAAIyGw0OTEUT-4TYqLFGn6S8qKhNhGFRJYqDNZT91YoPOpQnUtm6RuPzuHfZefogwePSGeR9Gn0yRRz8eAEqJHOtXYMxp-oAmn27z89iqJHRSrQcG0c9wDxqIHSZuey0EV1~WRTYxTQexqKHpEJD1Vb2qqVyRg08lMgYfKHFhsF8NV5cvoGUTxwrVWxWqShfCEPMVFp4s9UX2W8E0COJHUDFn0JrW7zF-yyI-PW2G3Ee8i1A__",
+    "rendered_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/8cca30bc-dfdf-4c8c-bd9b-5911669d5857/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvOGNjYTMwYmMtZGZkZi00YzhjLWJkOWItNTkxMTY2OWQ1ODU3L2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=OJiCnPzuuNtYE~w0VlkwF3mgbyJs8t2457wQPk-pf2Z463eyMF7~BZLUjJfwxLBqfZO9NPdipUvWsmbOTymRzVhOgDWLzeZ8pxK6COk1FLKa49PAtqfu2XJ2j9~D3FKaxhMRjOm5pDd7ULe1l38GxczZvDbRPK3u6zszK1afFG-fa28dbCQykfbi7QVwdU1TZCgJIpfoOxanzmc7-Tn8KxO9bTiV5dQuExnBP9eh-7niWs6WVpUVOozcsA89Mzh2sBsr9keUPQ-VGzCYH-keZBSg780GNLH5ZOg164MZaVe5dSb0Xo6XcZ1e6Kp7QdTwnl~nKKSO1wJS5NFK3oU2Mw__"
+  },
+  "progress": 100,
+  "create_time": 1784017507,
+  "consumed_credit": 60,
+  "prompt": "exactly six flat rounded-rectangle artist color swatch cards arranged as a single 120-degree hand fan on one shared plane, each card radiating from one small central brass pivot rivet, all six full colored front faces visibly spread and readable, each card a different muted sage coral blue mustard lavender or blush paint sample, thick matte paper edges, hand-painted oil illustration style translated into clean game-ready 3D, centered at origin, isolated object, no readable text, no logo, no stand",
+  "thumbnail": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/8cca30bc-dfdf-4c8c-bd9b-5911669d5857/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvOGNjYTMwYmMtZGZkZi00YzhjLWJkOWItNTkxMTY2OWQ1ODU3L2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=OJiCnPzuuNtYE~w0VlkwF3mgbyJs8t2457wQPk-pf2Z463eyMF7~BZLUjJfwxLBqfZO9NPdipUvWsmbOTymRzVhOgDWLzeZ8pxK6COk1FLKa49PAtqfu2XJ2j9~D3FKaxhMRjOm5pDd7ULe1l38GxczZvDbRPK3u6zszK1afFG-fa28dbCQykfbi7QVwdU1TZCgJIpfoOxanzmc7-Tn8KxO9bTiV5dQuExnBP9eh-7niWs6WVpUVOozcsA89Mzh2sBsr9keUPQ-VGzCYH-keZBSg780GNLH5ZOg164MZaVe5dSb0Xo6XcZ1e6Kp7QdTwnl~nKKSO1wJS5NFK3oU2Mw__",
+  "queuing_num": -1,
+  "running_left_time": -1,
+  "result": {
+    "pbr_model": {
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/8cca30bc-dfdf-4c8c-bd9b-5911669d5857/tripo_pbr_model_8cca30bc-dfdf-4c8c-bd9b-5911669d5857.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvOGNjYTMwYmMtZGZkZi00YzhjLWJkOWItNTkxMTY2OWQ1ODU3L3RyaXBvX3Bicl9tb2RlbF84Y2NhMzBiYy1kZmRmLTRjOGMtYmQ5Yi01OTExNjY5ZDU4NTcuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=XKSs6mFxVbUSLxO3H4dQkSNh3-nhBb75AIroTmTDdKM08DNAmgz1HZSD6y88l6~y~4E9BZHwswLqxzpTAwC5kmoHf3tOKsL4yIdQZnrEHrisLIttM5dzKij2gvDHKI4QwC~wiEB~4OxyuO3ZzfQFwFKcPtozjePWeZZ8pYM~AbsQeumoZbHI-r5CcEozsE~tc~tOwiPggDJvFsdxIpPN9hovme~AtSc5Giu5sCjydGU~tXw-grq2uRpM5Fh0DB~LAyd5NX9niPA6iK4zbIogJHCZMpL02i6iWv1o51HLvnxeY~wpaaA3sMb2Ma7uUFa1LlGZF1PgXQa6Ykv2AwYQMg__",
+      "type": "glb"
+    },
+    "rendered_image": {
+      "type": "webp",
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/8cca30bc-dfdf-4c8c-bd9b-5911669d5857/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvOGNjYTMwYmMtZGZkZi00YzhjLWJkOWItNTkxMTY2OWQ1ODU3L2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=OJiCnPzuuNtYE~w0VlkwF3mgbyJs8t2457wQPk-pf2Z463eyMF7~BZLUjJfwxLBqfZO9NPdipUvWsmbOTymRzVhOgDWLzeZ8pxK6COk1FLKa49PAtqfu2XJ2j9~D3FKaxhMRjOm5pDd7ULe1l38GxczZvDbRPK3u6zszK1afFG-fa28dbCQykfbi7QVwdU1TZCgJIpfoOxanzmc7-Tn8KxO9bTiV5dQuExnBP9eh-7niWs6WVpUVOozcsA89Mzh2sBsr9keUPQ-VGzCYH-keZBSg780GNLH5ZOg164MZaVe5dSb0Xo6XcZ1e6Kp7QdTwnl~nKKSO1wJS5NFK3oU2Mw__"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Tripo Oil-Scene Asset Ledger
 
-**Status:** COMPLETE - four accepted PBR GLBs copied to stable runtime paths.
+**Status:** COMPLETE - intake budgets enforced and the rejected swatch task retained as evidence.
 
 ## Provider Readiness
 
@@ -8,41 +8,56 @@
 | --- | --- |
 | Credential probe | `TRIPO_API_KEY=SET` |
 | Model version | `v3.1-20260211` |
-| Common options | `texture=true`, `pbr=true`, `texture-quality=detailed`, `geometry-quality=detailed`, `texture-alignment=geometry`, `smart-low-poly=true`, `auto-size=true`, `export-uv=true`, `compress=meshopt`, `wait`, `download` |
+| Common generation options | `texture=true`, `pbr=true`, `texture-quality=detailed`, `geometry-quality=detailed`, `texture-alignment=geometry`, `smart-low-poly=true`, `auto-size=true`, `export-uv=true`, `compress=meshopt`, `wait`, `download` |
+| Offline intake tool | `@gltf-transform/cli` `4.4.1` |
 
-## Accepted Assets
+## Swatch Selection
 
-| Asset | Task ID | Face limit | Provider PBR source | Stable runtime file | Bytes | SHA-256 | Acceptance |
-| --- | --- | ---: | --- | --- | ---: | --- | --- |
-| marker | `8d1a2667-995a-4836-9b84-5b51d16cc22c` | 8,000 | `assets/tripo/oil-scene/marker/8d1a2667-995a-4836-9b84-5b51d16cc22c-pbr_model.glb` | `src/assets/models/oil-scene/marker.glb` | 2,388,656 | `58C35804BC2D8D45344BD0CF42ADE0277A4F46ECBBC6671DB30B4386A06527C5` | Accepted: single, readable marker silhouette with intact body and nib-end form; no text, floor, or background. |
-| cup | `03a05f10-8d09-4789-9f67-2bc09a341741` | 8,000 | `assets/tripo/oil-scene/cup/03a05f10-8d09-4789-9f67-2bc09a341741-pbr_model.glb` | `src/assets/models/oil-scene/cup.glb` | 1,574,948 | `F1BF55B86DCF80340F3CE5BE6B12920FD4F0B795DFA92F9306010D14E978AC19` | Accepted: intact tapered cup and curved handle with a stable base; no detached geometry, text, floor, or background. |
-| swatches | `0a28e52c-3ac2-49b4-9410-d893b3d61490` | 10,000 | `assets/tripo/oil-scene/swatches/0a28e52c-3ac2-49b4-9410-d893b3d61490-pbr_model.glb` | `src/assets/models/oil-scene/swatches.glb` | 3,145,684 | `9D4E1ADE9A06612CEDD7BBCEE05332F6B5478117267C5A8A1195D304D9422D86` | Accepted: compact layered card stack with clear color separation; no readable text, floor, or background. |
-| foliage-kit | `25814f77-806a-4286-b7f8-538eb0e85b8d` | 15,000 | `assets/tripo/oil-scene/foliage-kit/25814f77-806a-4286-b7f8-538eb0e85b8d-pbr_model.glb` | `src/assets/models/oil-scene/foliage-kit.glb` | 3,680,924 | `FC383EE8400BD20BB7773D10812C481C4D55D121A42B89662D4A6859B97BD0BD` | Accepted: separate potted flowering plant and compact tree form, grounded with connected roots; no scene background or billboard foliage. |
+| Task ID | Decision | Evidence |
+| --- | --- | --- |
+| `0a28e52c-3ac2-49b4-9410-d893b3d61490` | Rejected | Preview is a vertical folded pile of card-like slabs, not a six-card fan. Its JSON, generated image, rendered preview, and PBR GLB remain unchanged in `assets/tripo/oil-scene/swatches/` as rejected evidence. |
+| `8cca30bc-dfdf-4c8c-bd9b-5911669d5857` | Accepted | Preview is an obvious six-card, 120-degree hand fan around one small pivot. All six colored faces are visible, with no vertical pile, book stack, folded-cloth form, or hidden faces. |
 
-The SHA-256 hash for every stable runtime GLB matches its selected provider PBR source. Provider JSON records, generated images, and rendered previews remain in the corresponding `assets/tripo/oil-scene/<asset>/` directory.
+Accepted swatch generation command:
 
-## Task Prompts And Asset-Specific Options
+```powershell
+python "C:\Users\zz\.agents\skills\threejs-3d-generator\scripts\threejs_3d_asset.py" text --prompt "exactly six flat rounded-rectangle artist color swatch cards arranged as a single 120-degree hand fan on one shared plane, each card radiating from one small central brass pivot rivet, all six full colored front faces visibly spread and readable, each card a different muted sage coral blue mustard lavender or blush paint sample, thick matte paper edges, hand-painted oil illustration style translated into clean game-ready 3D, centered at origin, isolated object, no readable text, no logo, no stand" --negative-prompt "vertical pile, book stack, folded cloth, overlapping hidden faces, cards folded over each other, photorealistic, glossy plastic, letters, numbers, logo, watermark, background, floor, display stand, floating cards far apart" --model-version v3.1-20260211 --texture-quality detailed --geometry-quality detailed --face-limit 10000 --smart-low-poly --auto-size --compress meshopt --wait --download --out-dir "assets\tripo\oil-scene\swatches"
+```
 
-### Marker
+## Selected Sources And Runtime Derivatives
 
-- Prompt: `single alcohol art marker pen for a cozy artist desk, softly rounded rectangular barrel, fitted cap and small nib-end details, hand-painted oil illustration style translated into clean game-ready 3D, matte ivory body with muted sage and coral accents, readable silhouette, centered at origin, isolated object, no text, no logo, no stand`
-- Negative prompt: `photorealistic glossy plastic, text, letters, logo, watermark, background, floor, display stand, floating parts, extra pens`
-- Asset-specific option: `face-limit=8000`
+Raw provider PBR outputs are immutable source evidence. Runtime GLBs are offline derivatives rather than byte-identical copies. Every source and runtime file has one PBR material with `baseColorTexture`, `normalTexture`, and `metallicRoughnessTexture`.
 
-### Cup
+| Asset | Selected task and provider PBR source | Source bytes / SHA-256 | Source triangles / textures | Runtime GLB | Runtime bytes / SHA-256 | Runtime triangles / textures |
+| --- | --- | --- | --- | --- | --- | --- |
+| marker | `8d1a2667-995a-4836-9b84-5b51d16cc22c`<br>`assets/tripo/oil-scene/marker/8d1a2667-995a-4836-9b84-5b51d16cc22c-pbr_model.glb` | 2,388,656<br>`58C35804BC2D8D45344BD0CF42ADE0277A4F46ECBBC6671DB30B4386A06527C5` | 8,786<br>3 x 4096x4096 JPEG | `src/assets/models/oil-scene/marker.glb` | 681,976<br>`EBD79CF6754AE02E98DF1714182154721B9CB60471FAB5719DEBCAE8DE8DA9A2` | 8,786<br>3 x 1024x1024 JPEG |
+| cup | `03a05f10-8d09-4789-9f67-2bc09a341741`<br>`assets/tripo/oil-scene/cup/03a05f10-8d09-4789-9f67-2bc09a341741-pbr_model.glb` | 1,574,948<br>`F1BF55B86DCF80340F3CE5BE6B12920FD4F0B795DFA92F9306010D14E978AC19` | 9,437<br>3 x 4096x4096 JPEG | `src/assets/models/oil-scene/cup.glb` | 386,132<br>`5D566B792F65EB52B080767EC54236AD344AB17984563D4BE73BA1F92997C0DA` | 9,437<br>3 x 1024x1024 JPEG |
+| swatches | `8cca30bc-dfdf-4c8c-bd9b-5911669d5857`<br>`assets/tripo/oil-scene/swatches/8cca30bc-dfdf-4c8c-bd9b-5911669d5857-pbr_model.glb` | 2,170,996<br>`3AA26C3204D9D23B73AC42161C6126094B25EA98214FB5CE2E8435878A0A21B7` | 12,512<br>3 x 4096x4096 JPEG | `src/assets/models/oil-scene/swatches.glb` | 735,612<br>`2B1B041EBCD170C71885FD182CA3C6D82695B7419A17167046BFABC41659DBD4` | 12,512<br>3 x 1024x1024 JPEG |
+| foliage-kit | `25814f77-806a-4286-b7f8-538eb0e85b8d`<br>`assets/tripo/oil-scene/foliage-kit/25814f77-806a-4286-b7f8-538eb0e85b8d-pbr_model.glb` | 3,680,924<br>`FC383EE8400BD20BB7773D10812C481C4D55D121A42B89662D4A6859B97BD0BD` | 23,334<br>3 x 4096x4096 JPEG | `src/assets/models/oil-scene/foliage-kit.glb` | 1,408,404<br>`A8799A337D96871A15227EF5C5769A2E554EA1E52BE20C9AE6CC5DAD9E684162` | 16,332<br>3 x 1024x1024 JPEG |
 
-- Prompt: `single handmade ceramic marker cup for a bright window-side artist desk, tapered cup with an integrated curved handle, subtle uneven pottery silhouette, light warm ivory glaze with muted blue-green brush strokes, oil-painted stylized game-ready 3D, matte rough surface, centered at origin, isolated object, no contents, no text, no logo, no stand`
-- Negative prompt: `photorealistic, glossy chrome, transparent glass, text, letters, logo, watermark, background, floor, display stand, floating parts`
-- Asset-specific option: `face-limit=8000`
+The rejected old swatch runtime contributed 12,822 triangles, so the pre-fix runtime total was **54,379** triangles. The accepted selected sources total **54,069** triangles; final runtime derivatives total **47,067**, below the 50,000 hard limit. All runtime textures are 1024x1024, meeting the 1024 target and the 2048 hard maximum.
 
-### Swatches
+## Offline Runtime Processing
 
-- Prompt: `compact fan-shaped stack of six artist color swatch cards, layered thick paper tabs with rounded corners, muted sage coral blue mustard and lavender paint samples, hand-painted oil illustration style, clean game-ready 3D, matte paper fibers, centered at origin, isolated object, no readable text, no logo, no stand`
-- Negative prompt: `photorealistic, glossy plastic, letters, numbers, logo, watermark, background, floor, display stand, floating cards far apart`
-- Asset-specific option: `face-limit=10000`
+These commands were run from the repository root. `resize` uses its Lanczos3 default, preserves texture aspect ratio, and never increases a dimension. Temporary foliage files were removed after creating the runtime asset.
 
-### Foliage Kit
+```powershell
+npx --yes @gltf-transform/cli resize "assets/tripo/oil-scene/marker/8d1a2667-995a-4836-9b84-5b51d16cc22c-pbr_model.glb" "src/assets/models/oil-scene/marker.glb" --width 1024 --height 1024
+npx --yes @gltf-transform/cli resize "assets/tripo/oil-scene/cup/03a05f10-8d09-4789-9f67-2bc09a341741-pbr_model.glb" "src/assets/models/oil-scene/cup.glb" --width 1024 --height 1024
+npx --yes @gltf-transform/cli resize "assets/tripo/oil-scene/swatches/8cca30bc-dfdf-4c8c-bd9b-5911669d5857-pbr_model.glb" "src/assets/models/oil-scene/swatches.glb" --width 1024 --height 1024
+npx --yes @gltf-transform/cli simplify "assets/tripo/oil-scene/foliage-kit/25814f77-806a-4286-b7f8-538eb0e85b8d-pbr_model.glb" "src/assets/models/oil-scene/foliage-kit.candidate.glb" --ratio 0.70 --error 0.01
+npx --yes @gltf-transform/cli resize "src/assets/models/oil-scene/foliage-kit.candidate.glb" "src/assets/models/oil-scene/foliage-kit.glb" --width 1024 --height 1024
+```
 
-- Prompt: `cohesive window-side foliage kit for a cozy artist studio: one small rounded potted flowering plant beside one compact young tree with a short trunk and layered leaf clusters, asymmetrical natural silhouette, muted sage forest and pale green foliage with sparse coral and cream flowers, visible oil-paint brush color variation, stylized game-ready 3D, matte surfaces, roots aligned to one ground plane, isolated asset group, no background, no stand`
-- Negative prompt: `photorealistic leaves, flat billboard foliage, neon green, glossy plastic, text, logo, watermark, landscape terrain, room, window, floating roots`
-- Asset-specific option: `face-limit=15000`
+The foliage simplifier produced 16,332 triangles from 23,334 while retaining the source bounding box and its PBR material maps. The marker, cup, and swatch geometry is untouched.
+
+## Structural Verification
+
+`npx --yes @gltf-transform/cli inspect <runtime-glb> --format=md` reports glTF 2.0, a single PBR material, all three expected texture slots, no animation, and these unchanged bounds. Direct binary-header checks report `glTF`, version `2`, and a header byte length equal to each file size.
+
+| Asset | Bounds (min to max) | Runtime GLB header |
+| --- | --- | --- |
+| marker | `-0.01883,-0.09,-0.01743` to `0.01886,0.09,0.01744` | `glTF v2 length=681976` |
+| cup | `-0.08245,-0.10999,-0.1048` to `0.08244,0.11001,0.10487` | `glTF v2 length=386132` |
+| swatches | `-0.08137,-0.50043,-0.49587` to `0.08334,0.49957,0.50217` | `glTF v2 length=735612` |
+| foliage-kit | `-0.17355,-0.28741,-0.35071` to `0.17382,0.31259,0.35089` | `glTF v2 length=1408404` |

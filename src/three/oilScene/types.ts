@@ -2,8 +2,20 @@ import type * as THREE from "three";
 
 export type ScenePose = "overview" | "focus";
 
+export type ImportedAssetState = "loading" | "loaded" | "fallback";
+
+export interface ImportedAssetDiagnostics {
+  deskProps: ImportedAssetState;
+  foliage: ImportedAssetState;
+  meshes: number;
+  materials: number;
+  textures: number;
+  triangles: number;
+}
+
 export interface OilSceneDiagnostics {
   pose: ScenePose;
+  assets: ImportedAssetDiagnostics;
   drawCalls: number;
   triangles: number;
   geometries: number;

@@ -2,6 +2,14 @@ import { expect, test, type Page } from "@playwright/test";
 
 interface SceneDiagnostics {
   pose: "overview" | "focus";
+  assets: {
+    deskProps: "loading" | "loaded" | "fallback";
+    foliage: "loading" | "loaded" | "fallback";
+    meshes: number;
+    materials: number;
+    textures: number;
+    triangles: number;
+  };
   drawCalls: number;
   triangles: number;
   motionTick: number;
@@ -37,6 +45,10 @@ test("renders the 3D desk scene behind the existing interactive book", async ({ 
 
   await expect(canvas).toHaveCSS("pointer-events", "none");
   await expect(canvas).toHaveAttribute("aria-hidden", "true");
+
+  await expect.poll(async () => (await readDiagnostics(page))?.assets.deskProps).toBe("loaded");
+  await expect.poll(async () => (await readDiagnostics(page))?.assets.foliage).toBe("loaded");
+  expect((await readDiagnostics(page))?.assets.triangles).toBeGreaterThan(0);
 
   const canvasBox = await canvas.boundingBox();
   const sceneBox = await scene.boundingBox();
@@ -90,6 +102,16 @@ test("renders the 3D desk scene behind the existing interactive book", async ({ 
   await page.locator("header input").first().fill("Copic");
   await page.locator("header input").first().press("Enter");
   await expect(page).toHaveURL(/\/library\?q=Copic$/);
+  await expect(page.locator(".book-page")).toBeVisible();
+});
+
+test("falls back to procedural props when imported models fail", async ({ page }) => {
+  await page.route("**/*.glb", (route) => route.abort());
+  await page.goto("/");
+
+  await expect.poll(async () => (await readDiagnostics(page))?.assets.deskProps).toBe("fallback");
+  await expect.poll(async () => (await readDiagnostics(page))?.assets.foliage).toBe("fallback");
+  await expect(page.getByTestId("book-desk-scene-canvas")).toBeVisible();
   await expect(page.locator(".book-page")).toBeVisible();
 });
 

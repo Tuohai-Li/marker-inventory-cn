@@ -170,3 +170,35 @@ test("stops environmental motion when reduced motion is requested", async ({ pag
     "focus",
   );
 });
+
+test("keeps navigation, modal, resize, and scene lifecycle healthy", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") errors.push(message.text());
+  });
+  page.on("pageerror", (error) => errors.push(error.message));
+
+  await page.goto("/");
+  await expect(page.getByTestId("book-desk-scene-canvas")).toHaveCount(1);
+
+  const navigationTabs = page.locator(".sticky-notes > button");
+  await navigationTabs.nth(1).click();
+  await expect(page).toHaveURL(/\/overview$/);
+  await expect(page.locator(".book-page")).toBeVisible();
+
+  await page.locator("header button").first().click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).toBeHidden();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.getByTestId("book-desk-scene-canvas")).toHaveCount(1);
+  await expect(page.getByTestId("book-surface-stage")).toBeInViewport();
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.reload();
+  await expect(page.getByTestId("book-desk-scene-canvas")).toHaveCount(1);
+  await expect(page.getByTestId("book-focus-toggle")).toBeVisible();
+
+  expect(errors).toEqual([]);
+});

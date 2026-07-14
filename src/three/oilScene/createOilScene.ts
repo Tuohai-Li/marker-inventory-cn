@@ -54,7 +54,7 @@ export function createOilScene(
   const materials = createOilMaterialKit(track);
   const world = buildWorld(scene, materials, track);
   const notebook = buildNotebook(scene, materials, track);
-  buildDeskProps(scene, materials, track);
+  const deskProps = buildDeskProps(scene, materials, track);
 
   const ambient = new THREE.HemisphereLight("#dfeaf1", "#99735c", 2.05);
   scene.add(ambient);
@@ -114,10 +114,9 @@ export function createOilScene(
     animationActive,
     pixelRatio,
   };
-  // Tasks 4 and 5 replace these placeholders with the procedural fallback groups.
   const importedAssets = loadImportedOilAssets({
     scene,
-    proceduralDeskProps: new THREE.Group(),
+    proceduralDeskProps: deskProps.group,
     proceduralFoliage: new THREE.Group(),
     treeCrowns: motion.treeCrowns,
     diagnostics: diagnostics.assets,

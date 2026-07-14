@@ -2,6 +2,10 @@ import * as THREE from "three";
 import type { OilMaterialKit } from "./materials";
 import type { TrackResource } from "./types";
 
+export interface DeskPropFallback {
+  group: THREE.Group;
+}
+
 function composeMarkerMatrix(
   object: THREE.Object3D,
   position: readonly [number, number, number],
@@ -17,7 +21,9 @@ export function buildDeskProps(
   scene: THREE.Scene,
   materials: OilMaterialKit,
   track: TrackResource,
-) {
+): DeskPropFallback {
+  const group = new THREE.Group();
+  group.name = "ProceduralDeskProps";
   const markerGeometry = track(new THREE.CylinderGeometry(0.075, 0.075, 1.2, 12));
   const capGeometry = track(new THREE.CylinderGeometry(0.086, 0.086, 0.2, 12));
   const markerBodies = new THREE.InstancedMesh(markerGeometry, materials.markerBody, 8);
@@ -54,7 +60,7 @@ export function buildDeskProps(
   });
   markerBodies.castShadow = true;
   markerCaps.castShadow = true;
-  scene.add(markerBodies, markerCaps);
+  group.add(markerBodies, markerCaps);
 
   const cup = new THREE.Mesh(
     track(new THREE.CylinderGeometry(0.38, 0.32, 0.88, 18, 1, true)),
@@ -62,7 +68,7 @@ export function buildDeskProps(
   );
   cup.position.set(4.15, -0.9, -0.1);
   cup.castShadow = true;
-  scene.add(cup);
+  group.add(cup);
 
   const cupHandle = new THREE.Mesh(
     track(new THREE.TorusGeometry(0.24, 0.055, 8, 18, Math.PI * 1.5)),
@@ -70,7 +76,7 @@ export function buildDeskProps(
   );
   cupHandle.position.set(4.5, -0.88, -0.1);
   cupHandle.rotation.y = Math.PI / 2;
-  scene.add(cupHandle);
+  group.add(cupHandle);
 
   const swatchGeometry = track(new THREE.BoxGeometry(0.86, 0.025, 0.24));
   const swatchMaterials = colors.slice(0, 6).map((color) =>
@@ -80,6 +86,9 @@ export function buildDeskProps(
     const swatch = new THREE.Mesh(swatchGeometry, swatchMaterials[index]);
     swatch.position.set(-4.05 + index * 0.08, -1.3 + index * 0.006, 2.02 + index * 0.14);
     swatch.rotation.y = -0.42 + index * 0.055;
-    scene.add(swatch);
+    group.add(swatch);
   }
+
+  scene.add(group);
+  return { group };
 }

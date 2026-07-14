@@ -25,6 +25,23 @@ interface ImportedResourceSummary {
   triangles: number;
 }
 
+interface ImportedDeskRoots {
+  marker: THREE.Group;
+  cup: THREE.Group;
+  swatches: THREE.Group;
+}
+
+const markerPositions = [
+  [-4.15, -1.12, 0.55],
+  [-3.72, -1.12, 0.78],
+  [-3.48, -1.13, 1.12],
+  [3.55, -1.12, 0.52],
+  [3.9, -1.12, 0.84],
+  [4.2, -1.12, 1.18],
+  [3.72, -1.12, 1.5],
+  [-3.98, -1.12, 1.45],
+] as const;
+
 function countMeshTriangles(mesh: THREE.Mesh) {
   const index = mesh.geometry.getIndex();
   if (index) return index.count / 3;
@@ -70,6 +87,40 @@ function collectImportedResources(root: THREE.Group): ImportedResourceSummary {
   return summary;
 }
 
+function disposeImportedResources(root: THREE.Group) {
+  const summary = collectImportedResources(root);
+  summary.geometries.forEach((geometry) => geometry.dispose());
+  summary.materials.forEach((material) => material.dispose());
+  summary.textures.forEach((texture) => texture.dispose());
+}
+
+function addPlacedRoot(
+  parent: THREE.Group,
+  root: THREE.Group,
+  position: readonly [number, number, number],
+  rotation: readonly [number, number, number] = [0, 0, 0],
+) {
+  const wrapper = new THREE.Group();
+  wrapper.position.set(...position);
+  wrapper.rotation.set(...rotation);
+  wrapper.add(root);
+  parent.add(wrapper);
+}
+
+function createImportedDeskProps({ marker, cup, swatches }: ImportedDeskRoots) {
+  const group = new THREE.Group();
+  group.name = "ImportedDeskProps";
+
+  markerPositions.forEach((position, index) => {
+    const rotationZ = index < 3 || index === 7 ? -0.72 + index * 0.08 : 0.65 + index * 0.035;
+    addPlacedRoot(group, marker.clone(true), position, [Math.PI / 2, 0, rotationZ]);
+  });
+  addPlacedRoot(group, cup, [4.15, -1.34, -0.1]);
+  addPlacedRoot(group, swatches, [-4.0, -1.34, 2.0], [0, -0.42, 0]);
+
+  return group;
+}
+
 export function normalizeImportedRoot(root: THREE.Group, targetSize: number): THREE.Group {
   root.updateMatrixWorld(true);
   const bounds = new THREE.Box3().setFromObject(root);
@@ -91,11 +142,6 @@ export function normalizeImportedRoot(root: THREE.Group, targetSize: number): TH
 
 export function loadImportedOilAssets(options: ImportedOilAssetOptions): ImportedOilAssetHandle {
   const loader = new GLTFLoader();
-  const stagedRoots = new THREE.Group();
-  stagedRoots.name = "ImportedOilAssetsStaging";
-  stagedRoots.visible = false;
-  options.scene.add(stagedRoots);
-
   const attachedRoots = new Set<THREE.Group>();
   const loadedMeshes = new Set<THREE.Mesh>();
   const loadedGeometries = new Set<THREE.BufferGeometry>();
@@ -125,39 +171,47 @@ export function loadImportedOilAssets(options: ImportedOilAssetOptions): Importe
     options.diagnostics.textures = loadedTextures.size;
   }
 
-  function disposeUntrackedResources(summary: ImportedResourceSummary) {
-    summary.geometries.forEach((geometry) => {
-      if (!loadedGeometries.has(geometry)) geometry.dispose();
-    });
-    summary.materials.forEach((material) => {
-      if (!loadedMaterials.has(material)) material.dispose();
-    });
-    summary.textures.forEach((texture) => {
-      if (!loadedTextures.has(texture)) texture.dispose();
-    });
+  async function loadNormalizedRoot(name: keyof typeof IMPORTED_OIL_ASSETS) {
+    const { url, targetSize } = IMPORTED_OIL_ASSETS[name];
+    const gltf = await loader.loadAsync(url);
+    return normalizeImportedRoot(gltf.scene, targetSize);
   }
 
-  const ready = Promise.all(
-    Object.values(IMPORTED_OIL_ASSETS).map(async ({ url, targetSize }) => {
-      try {
-        const gltf = await loader.loadAsync(url);
-        const root = normalizeImportedRoot(gltf.scene, targetSize);
-        const summary = collectImportedResources(root);
-        root.userData.importedAssetTriangles = summary.triangles;
+  const deskLoads = [
+    loadNormalizedRoot("marker"),
+    loadNormalizedRoot("cup"),
+    loadNormalizedRoot("swatches"),
+  ] as const;
 
-        if (disposed) {
-          disposeUntrackedResources(summary);
-          return;
-        }
-
-        registerResources(summary);
-        stagedRoots.add(root);
-        attachedRoots.add(root);
-      } catch {
-        // Fallback state and grouped error reporting are owned by Tasks 4 and 5.
+  const ready = Promise.all(deskLoads)
+    .then(([marker, cup, swatches]) => {
+      const importedDeskProps = createImportedDeskProps({ marker, cup, swatches });
+      if (disposed) {
+        disposeImportedResources(importedDeskProps);
+        return;
       }
-    }),
-  ).then(() => undefined);
+
+      const summary = collectImportedResources(importedDeskProps);
+      registerResources(summary);
+      options.diagnostics.triangles += summary.triangles;
+      options.scene.add(importedDeskProps);
+      attachedRoots.add(importedDeskProps);
+      options.proceduralDeskProps.visible = false;
+      options.diagnostics.deskProps = "loaded";
+    })
+    .catch(async () => {
+      const results = await Promise.allSettled(deskLoads);
+      results.forEach((result) => {
+        if (result.status !== "fulfilled") return;
+        result.value.removeFromParent();
+        disposeImportedResources(result.value);
+      });
+      if (disposed) return;
+
+      options.proceduralDeskProps.visible = true;
+      options.diagnostics.deskProps = "fallback";
+      console.error("Unable to load Tripo desk props");
+    });
 
   return {
     ready,
@@ -166,7 +220,6 @@ export function loadImportedOilAssets(options: ImportedOilAssetOptions): Importe
       disposed = true;
       attachedRoots.forEach((root) => root.removeFromParent());
       attachedRoots.clear();
-      stagedRoots.removeFromParent();
     },
   };
 }

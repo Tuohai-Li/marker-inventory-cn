@@ -1,0 +1,42 @@
+{
+  "task_id": "03a05f10-8d09-4789-9f67-2bc09a341741",
+  "type": "text_to_model",
+  "status": "success",
+  "input": {
+    "prompt": "single handmade ceramic marker cup for a bright window-side artist desk, tapered cup with an integrated curved handle, subtle uneven pottery silhouette, light warm ivory glaze with muted blue-green brush strokes, oil-painted stylized game-ready 3D, matte rough surface, centered at origin, isolated object, no contents, no text, no logo, no stand",
+    "negative_prompt": "photorealistic, glossy chrome, transparent glass, text, letters, logo, watermark, background, floor, display stand, floating parts",
+    "model_version": "v3.1-20260211",
+    "texture": true,
+    "pbr": true,
+    "texture_quality": "detailed",
+    "texture_alignment": "geometry",
+    "auto_size": true,
+    "smart_low_poly": true,
+    "export_uv": true,
+    "face_limit": 8000,
+    "compress": "meshopt",
+    "geometry_quality": "detailed"
+  },
+  "output": {
+    "pbr_model": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/03a05f10-8d09-4789-9f67-2bc09a341741/tripo_pbr_model_03a05f10-8d09-4789-9f67-2bc09a341741.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvMDNhMDVmMTAtOGQwOS00Nzg5LTlmNjctMmJjMDlhMzQxNzQxL3RyaXBvX3Bicl9tb2RlbF8wM2EwNWYxMC04ZDA5LTQ3ODktOWY2Ny0yYmMwOWEzNDE3NDEuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=MEqgJ3OPAKvmhSziHDJsyUDfzNwvWLiLOwjmCD-z5l0beG5UMCiZVqEgoh-7DfLzgcXHWGbx-ixNjdXiX0rIfS14X6j1RohWxBASoGRYPuaErDTTH~JmQ~EoBKH3Mfjx3Nywj4tHPzCem9mUoUG-F03-LPzLlIntmKif-mS~SYjvtdGkHW10rrPgP~q4LCchNrW3IM9Aa0u~UpcjYWpnG-zBakBYNcuxyQDGV-2KPxXEo94Qe1D0b7wcmgO5FFUOR4TOsnImXP21Ifl7~6-A-t64rqub7q4WNCqfzN-sESs3GRUcXc-lTWqNQJQ956uMMvNJlAuvG3IcnAZfaEq~AA__",
+    "generated_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/03a05f10-8d09-4789-9f67-2bc09a341741/text2image_03a05f10-8d09-4789-9f67-2bc09a341741.jpeg?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvMDNhMDVmMTAtOGQwOS00Nzg5LTlmNjctMmJjMDlhMzQxNzQxL3RleHQyaW1hZ2VfMDNhMDVmMTAtOGQwOS00Nzg5LTlmNjctMmJjMDlhMzQxNzQxLmpwZWciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=Rgmgs3Ky2bCIhCK7uv-2XaAkL5FFXwNkSl9sBeJS2vXAfFZNEOj~iJ6AORu0NAmcgDjeQ5~DVw2hRVLKVJa8v7ywAqWp4bRog0Ehvk7xotdRCE3EhxFm5ddUgi0V3cIklQN~WDPxhzQLWYH8NEWzs4ymPcOAvWtH4OYDL6bJYU7fSwGhKqmkrkuzj4LB9YAKXYEOJGE-4N1~2pz7-p3DuejB-rfd89Z0NE2KHuLH0IOe9jwLuP9UZDL42ETcYKrcn5F1LMIlj2xc1EZzFvpRcqVgDAbVje0t0qkaTTpj3k-9YIW0MY0YQMSL54pUCPjfhbR-EJT0hiHWSMsMcqQ1dA__",
+    "rendered_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/03a05f10-8d09-4789-9f67-2bc09a341741/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvMDNhMDVmMTAtOGQwOS00Nzg5LTlmNjctMmJjMDlhMzQxNzQxL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=p0GB3ZD-kYciZPB4YCD3SypuezQyvaVmSeHdcy1xkqBqzyfMaZ8vBQEYY3ky7sHGxFMQXE0fhoUip9RDqMXYdtt8ycbh1KWYgt3ePJN0k2a-HuX~rmeeIVo3JJmZCOelREi38HWmfXfHA2-OX5ZccacQEGx173jF-Y~iMdhcTePiJWTH1x5InK9hC1WZXD64Yj5aVDMe2cT5uXcOxt8qZ3Kej8lSBnQq7-dXf05731sbG-v5Csf-rfPMRjXnbSRw4kIaZa391~6pWpq-hHZfKIoSgGlSLB6ZEjJ8GvCe5xWt1H95mv7DAghBY3zCLcuFOV7kR3aYpsURCAeYs9ZbSg__"
+  },
+  "progress": 100,
+  "create_time": 1784009912,
+  "consumed_credit": 60,
+  "prompt": "single handmade ceramic marker cup for a bright window-side artist desk, tapered cup with an integrated curved handle, subtle uneven pottery silhouette, light warm ivory glaze with muted blue-green brush strokes, oil-painted stylized game-ready 3D, matte rough surface, centered at origin, isolated object, no contents, no text, no logo, no stand",
+  "thumbnail": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/03a05f10-8d09-4789-9f67-2bc09a341741/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvMDNhMDVmMTAtOGQwOS00Nzg5LTlmNjctMmJjMDlhMzQxNzQxL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=p0GB3ZD-kYciZPB4YCD3SypuezQyvaVmSeHdcy1xkqBqzyfMaZ8vBQEYY3ky7sHGxFMQXE0fhoUip9RDqMXYdtt8ycbh1KWYgt3ePJN0k2a-HuX~rmeeIVo3JJmZCOelREi38HWmfXfHA2-OX5ZccacQEGx173jF-Y~iMdhcTePiJWTH1x5InK9hC1WZXD64Yj5aVDMe2cT5uXcOxt8qZ3Kej8lSBnQq7-dXf05731sbG-v5Csf-rfPMRjXnbSRw4kIaZa391~6pWpq-hHZfKIoSgGlSLB6ZEjJ8GvCe5xWt1H95mv7DAghBY3zCLcuFOV7kR3aYpsURCAeYs9ZbSg__",
+  "queuing_num": -1,
+  "running_left_time": -1,
+  "result": {
+    "pbr_model": {
+      "type": "glb",
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/03a05f10-8d09-4789-9f67-2bc09a341741/tripo_pbr_model_03a05f10-8d09-4789-9f67-2bc09a341741.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvMDNhMDVmMTAtOGQwOS00Nzg5LTlmNjctMmJjMDlhMzQxNzQxL3RyaXBvX3Bicl9tb2RlbF8wM2EwNWYxMC04ZDA5LTQ3ODktOWY2Ny0yYmMwOWEzNDE3NDEuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=MEqgJ3OPAKvmhSziHDJsyUDfzNwvWLiLOwjmCD-z5l0beG5UMCiZVqEgoh-7DfLzgcXHWGbx-ixNjdXiX0rIfS14X6j1RohWxBASoGRYPuaErDTTH~JmQ~EoBKH3Mfjx3Nywj4tHPzCem9mUoUG-F03-LPzLlIntmKif-mS~SYjvtdGkHW10rrPgP~q4LCchNrW3IM9Aa0u~UpcjYWpnG-zBakBYNcuxyQDGV-2KPxXEo94Qe1D0b7wcmgO5FFUOR4TOsnImXP21Ifl7~6-A-t64rqub7q4WNCqfzN-sESs3GRUcXc-lTWqNQJQ956uMMvNJlAuvG3IcnAZfaEq~AA__"
+    },
+    "rendered_image": {
+      "type": "webp",
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/03a05f10-8d09-4789-9f67-2bc09a341741/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvMDNhMDVmMTAtOGQwOS00Nzg5LTlmNjctMmJjMDlhMzQxNzQxL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=p0GB3ZD-kYciZPB4YCD3SypuezQyvaVmSeHdcy1xkqBqzyfMaZ8vBQEYY3ky7sHGxFMQXE0fhoUip9RDqMXYdtt8ycbh1KWYgt3ePJN0k2a-HuX~rmeeIVo3JJmZCOelREi38HWmfXfHA2-OX5ZccacQEGx173jF-Y~iMdhcTePiJWTH1x5InK9hC1WZXD64Yj5aVDMe2cT5uXcOxt8qZ3Kej8lSBnQq7-dXf05731sbG-v5Csf-rfPMRjXnbSRw4kIaZa391~6pWpq-hHZfKIoSgGlSLB6ZEjJ8GvCe5xWt1H95mv7DAghBY3zCLcuFOV7kR3aYpsURCAeYs9ZbSg__"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "task_id": "0a28e52c-3ac2-49b4-9410-d893b3d61490",
+  "type": "text_to_model",
+  "status": "success",
+  "input": {
+    "prompt": "compact fan-shaped stack of six artist color swatch cards, layered thick paper tabs with rounded corners, muted sage coral blue mustard and lavender paint samples, hand-painted oil illustration style, clean game-ready 3D, matte paper fibers, centered at origin, isolated object, no readable text, no logo, no stand",
+    "negative_prompt": "photorealistic, glossy plastic, letters, numbers, logo, watermark, background, floor, display stand, floating cards far apart",
+    "model_version": "v3.1-20260211",
+    "texture": true,
+    "pbr": true,
+    "texture_quality": "detailed",
+    "texture_alignment": "geometry",
+    "auto_size": true,
+    "smart_low_poly": true,
+    "export_uv": true,
+    "face_limit": 10000,
+    "compress": "meshopt",
+    "geometry_quality": "detailed"
+  },
+  "output": {
+    "pbr_model": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/0a28e52c-3ac2-49b4-9410-d893b3d61490/tripo_pbr_model_0a28e52c-3ac2-49b4-9410-d893b3d61490.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMGEyOGU1MmMtM2FjMi00OWI0LTk0MTAtZDg5M2IzZDYxNDkwL3RyaXBvX3Bicl9tb2RlbF8wYTI4ZTUyYy0zYWMyLTQ5YjQtOTQxMC1kODkzYjNkNjE0OTAuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=LSxEv3-n73lsfLnubyez8PW6aGa3IU9xL9BFDL3xLfJKtONN28MXju94o3AuMxU~b3z5TTtUKFVMblcx~PXeP9ZSFU5NY19vw43taj-eN~2dSiJ6iNk7coRLelKlHOr9rLBsApubwds88KrVxzwNFJtpAhctWp3gwksPbPn6ncRADoVDaIuVQdVq6QHD5QS~2i0UZaqNudtQe1KqsIcpTgmUN7s24nLwG25AYk95s9l22ZQCXsogaVAqOOXxGEm6WQmQRut7GOf0KqvWH~ox27qtq8TQd2JScTo94VU6bzE3oJDPCy5WcJBP9vnsNN08i3ck4zY7lp9lOeVRdVfG3w__",
+    "generated_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/0a28e52c-3ac2-49b4-9410-d893b3d61490/text2image_0a28e52c-3ac2-49b4-9410-d893b3d61490.jpeg?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMGEyOGU1MmMtM2FjMi00OWI0LTk0MTAtZDg5M2IzZDYxNDkwL3RleHQyaW1hZ2VfMGEyOGU1MmMtM2FjMi00OWI0LTk0MTAtZDg5M2IzZDYxNDkwLmpwZWciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=QxyLWzJUn6l7iaTAtP6HHPHG1bgsVxNqF~AFfoKh6y5i9mWCrp-K1II~XTxMhopB17kzQuqJEYtiK2wBvG-W1pu0fy1SghKfd94hkysVcCOXpBGcLFjU2T0xEZhbI5jIdGp-B~HK6OExaJPXT-R80YFLvlDR4uqJey1MfsT1p7QufZFZL96hjxf9OlepRET-gV0vYc6Mryyvp~5LbGbTjADOA0AePwN3~P1WgEISC8YOtwRv0vu8z8D58pbxLZUW1mqe-pJ6JoIOZlbrC1bkE9sAHpMwOgMcksceWQVYETPFNNxlBTVFhbg7l53OoUz7lRvhzcT~mauVIaqAtDb-lg__",
+    "rendered_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/0a28e52c-3ac2-49b4-9410-d893b3d61490/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMGEyOGU1MmMtM2FjMi00OWI0LTk0MTAtZDg5M2IzZDYxNDkwL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=FxfaZw8yT8DmiqmJwaPhwJGurqPfX8pXADUjptTsEx23zvPX64ji68m5mOFlxqmvFSfXZLWDC3mhd0G7v~-~0sq3QwlxqLMvXxaIZS3mvBma8b6vHkr1wkw1JVPe1RYzAQaSx0Q5~rr4yeYoHSJRd~pKpP92XtK6D46WdoDu0582FsNg7QxTJw~82jCOR55iqYiD9O~8B9-sRA-Xu6VIiOu5L9-Zw-Y5ZPfchydjopNmTGxgdT3zTzMj4kHv1fIdQnFalJoSWs~Ad9sjwmGd8O2chOUtCYUvowKmrc0FCMqNkZL4jUgsNeyy~o3XgtZIBP1Mj0k-WWTNIGn3IYQoUQ__"
+  },
+  "progress": 100,
+  "create_time": 1784015327,
+  "consumed_credit": 60,
+  "prompt": "compact fan-shaped stack of six artist color swatch cards, layered thick paper tabs with rounded corners, muted sage coral blue mustard and lavender paint samples, hand-painted oil illustration style, clean game-ready 3D, matte paper fibers, centered at origin, isolated object, no readable text, no logo, no stand",
+  "thumbnail": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/0a28e52c-3ac2-49b4-9410-d893b3d61490/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMGEyOGU1MmMtM2FjMi00OWI0LTk0MTAtZDg5M2IzZDYxNDkwL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=FxfaZw8yT8DmiqmJwaPhwJGurqPfX8pXADUjptTsEx23zvPX64ji68m5mOFlxqmvFSfXZLWDC3mhd0G7v~-~0sq3QwlxqLMvXxaIZS3mvBma8b6vHkr1wkw1JVPe1RYzAQaSx0Q5~rr4yeYoHSJRd~pKpP92XtK6D46WdoDu0582FsNg7QxTJw~82jCOR55iqYiD9O~8B9-sRA-Xu6VIiOu5L9-Zw-Y5ZPfchydjopNmTGxgdT3zTzMj4kHv1fIdQnFalJoSWs~Ad9sjwmGd8O2chOUtCYUvowKmrc0FCMqNkZL4jUgsNeyy~o3XgtZIBP1Mj0k-WWTNIGn3IYQoUQ__",
+  "queuing_num": -1,
+  "running_left_time": -1,
+  "result": {
+    "pbr_model": {
+      "type": "glb",
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/0a28e52c-3ac2-49b4-9410-d893b3d61490/tripo_pbr_model_0a28e52c-3ac2-49b4-9410-d893b3d61490.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMGEyOGU1MmMtM2FjMi00OWI0LTk0MTAtZDg5M2IzZDYxNDkwL3RyaXBvX3Bicl9tb2RlbF8wYTI4ZTUyYy0zYWMyLTQ5YjQtOTQxMC1kODkzYjNkNjE0OTAuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=LSxEv3-n73lsfLnubyez8PW6aGa3IU9xL9BFDL3xLfJKtONN28MXju94o3AuMxU~b3z5TTtUKFVMblcx~PXeP9ZSFU5NY19vw43taj-eN~2dSiJ6iNk7coRLelKlHOr9rLBsApubwds88KrVxzwNFJtpAhctWp3gwksPbPn6ncRADoVDaIuVQdVq6QHD5QS~2i0UZaqNudtQe1KqsIcpTgmUN7s24nLwG25AYk95s9l22ZQCXsogaVAqOOXxGEm6WQmQRut7GOf0KqvWH~ox27qtq8TQd2JScTo94VU6bzE3oJDPCy5WcJBP9vnsNN08i3ck4zY7lp9lOeVRdVfG3w__"
+    },
+    "rendered_image": {
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/0a28e52c-3ac2-49b4-9410-d893b3d61490/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMGEyOGU1MmMtM2FjMi00OWI0LTk0MTAtZDg5M2IzZDYxNDkwL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=FxfaZw8yT8DmiqmJwaPhwJGurqPfX8pXADUjptTsEx23zvPX64ji68m5mOFlxqmvFSfXZLWDC3mhd0G7v~-~0sq3QwlxqLMvXxaIZS3mvBma8b6vHkr1wkw1JVPe1RYzAQaSx0Q5~rr4yeYoHSJRd~pKpP92XtK6D46WdoDu0582FsNg7QxTJw~82jCOR55iqYiD9O~8B9-sRA-Xu6VIiOu5L9-Zw-Y5ZPfchydjopNmTGxgdT3zTzMj4kHv1fIdQnFalJoSWs~Ad9sjwmGd8O2chOUtCYUvowKmrc0FCMqNkZL4jUgsNeyy~o3XgtZIBP1Mj0k-WWTNIGn3IYQoUQ__",
+      "type": "webp"
+    }
+  }
+}

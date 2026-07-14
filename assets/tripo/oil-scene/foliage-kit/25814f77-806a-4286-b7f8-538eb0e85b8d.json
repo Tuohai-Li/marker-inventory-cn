@@ -1,0 +1,42 @@
+{
+  "task_id": "25814f77-806a-4286-b7f8-538eb0e85b8d",
+  "type": "text_to_model",
+  "status": "success",
+  "input": {
+    "prompt": "cohesive window-side foliage kit for a cozy artist studio: one small rounded potted flowering plant beside one compact young tree with a short trunk and layered leaf clusters, asymmetrical natural silhouette, muted sage forest and pale green foliage with sparse coral and cream flowers, visible oil-paint brush color variation, stylized game-ready 3D, matte surfaces, roots aligned to one ground plane, isolated asset group, no background, no stand",
+    "negative_prompt": "photorealistic leaves, flat billboard foliage, neon green, glossy plastic, text, logo, watermark, landscape terrain, room, window, floating roots",
+    "model_version": "v3.1-20260211",
+    "texture": true,
+    "pbr": true,
+    "texture_quality": "detailed",
+    "texture_alignment": "geometry",
+    "auto_size": true,
+    "smart_low_poly": true,
+    "export_uv": true,
+    "face_limit": 15000,
+    "compress": "meshopt",
+    "geometry_quality": "detailed"
+  },
+  "output": {
+    "pbr_model": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/25814f77-806a-4286-b7f8-538eb0e85b8d/tripo_pbr_model_25814f77-806a-4286-b7f8-538eb0e85b8d.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMjU4MTRmNzctODA2YS00Mjg2LWI3ZjgtNTM4ZWIwZTg1YjhkL3RyaXBvX3Bicl9tb2RlbF8yNTgxNGY3Ny04MDZhLTQyODYtYjdmOC01MzhlYjBlODViOGQuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=NNy7udCUxw1OQrHNMd~ejZsm17AeIlNPkIXKI195vhcqYhG8bQtMT4Jt~MO2ilqNd~eg~SuH3zuHbxHyQ9Q4lgNPxWYPq2Vt94b2-XnKAjeHFuLVaX8YqFOeVG25rKmtVX-stkRXhr2BIM0ExaWKewu1EopUvaPMlICsUNLvCzZvjInDETt9A2O4sN5eY36vkWWkdaXkvqhDKPsLLs~IwgIML0JpCm0o~DW-EJ6tShuLuH8AJNEs~MbOpGHCtE12-F6yGaOxYBD3OhghgOCTMMCGUhzB~RNrtZjhiHNOQySa-qmTlP96ZZ1RQEnofDN-yRoXI0HiUV2GFbHw8eyTfw__",
+    "generated_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/25814f77-806a-4286-b7f8-538eb0e85b8d/text2image_25814f77-806a-4286-b7f8-538eb0e85b8d.jpeg?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMjU4MTRmNzctODA2YS00Mjg2LWI3ZjgtNTM4ZWIwZTg1YjhkL3RleHQyaW1hZ2VfMjU4MTRmNzctODA2YS00Mjg2LWI3ZjgtNTM4ZWIwZTg1YjhkLmpwZWciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=EV8jJxlyPA-c4VkRvOLipZjFR7VElFNIHLLxcB-qActDs5zhY4VfR4X~T6xpc6igyc3xDFgU~PO4Nx-g9YC~bGMeZsOdrL~W~GB12sxChyRJ1ohWMDe~jH8S-a6iLbIFCpRxWSW7bbr7URQEROdb4L6klxHS-rjs9VLdTQKiqH37g5n5x1lnz0yjGRthoSdlgWuHQxOktOtAAiDY~z-K2lETCrzf7w5Yd-XNlhvzfyHLNO1Hi1tQRtIkw77P26UBU0QgD4EqkuhYgOlhFnVS24An-6UioQlcsESP8LANL4oPc0g2le-BdIqtnxdzPQV-uG4aaod6aXM3LmsuNkgqRw__",
+    "rendered_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/25814f77-806a-4286-b7f8-538eb0e85b8d/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMjU4MTRmNzctODA2YS00Mjg2LWI3ZjgtNTM4ZWIwZTg1YjhkL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=EywgxtlocULRCxHvPKBK1hEMt5FMTqY1Woqsy-ZnjedNlgPXVAor8-2CBJKEzZnMLDRDGhLks0yczaX829cX~q-Jt7SeoItwIWrke~ltggrCQbImFg52KaFi7fBDwlBPrAaEAoubjTioeZyyM6B7wlXhzdtE8JVHd2CvQNHAxQxXZJHqbrt9TZ41k4jgRXzegdbJJurdH14Am5b0G0Ss8hU89vwZo8Egsr-NHM1j~WjOCb6MNg~c813cFN9-rJE6pNtefzO6kaP7HZYW~JBGt61I9HI9W5CVCL8-YdO6wqRtaNPsS5WYDqR~4P9Tr74RvUCDvfnb4rwkgEpc7x40JQ__"
+  },
+  "progress": 100,
+  "create_time": 1784015907,
+  "consumed_credit": 60,
+  "prompt": "cohesive window-side foliage kit for a cozy artist studio: one small rounded potted flowering plant beside one compact young tree with a short trunk and layered leaf clusters, asymmetrical natural silhouette, muted sage forest and pale green foliage with sparse coral and cream flowers, visible oil-paint brush color variation, stylized game-ready 3D, matte surfaces, roots aligned to one ground plane, isolated asset group, no background, no stand",
+  "thumbnail": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/25814f77-806a-4286-b7f8-538eb0e85b8d/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMjU4MTRmNzctODA2YS00Mjg2LWI3ZjgtNTM4ZWIwZTg1YjhkL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=EywgxtlocULRCxHvPKBK1hEMt5FMTqY1Woqsy-ZnjedNlgPXVAor8-2CBJKEzZnMLDRDGhLks0yczaX829cX~q-Jt7SeoItwIWrke~ltggrCQbImFg52KaFi7fBDwlBPrAaEAoubjTioeZyyM6B7wlXhzdtE8JVHd2CvQNHAxQxXZJHqbrt9TZ41k4jgRXzegdbJJurdH14Am5b0G0Ss8hU89vwZo8Egsr-NHM1j~WjOCb6MNg~c813cFN9-rJE6pNtefzO6kaP7HZYW~JBGt61I9HI9W5CVCL8-YdO6wqRtaNPsS5WYDqR~4P9Tr74RvUCDvfnb4rwkgEpc7x40JQ__",
+  "queuing_num": -1,
+  "running_left_time": -1,
+  "result": {
+    "pbr_model": {
+      "type": "glb",
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/25814f77-806a-4286-b7f8-538eb0e85b8d/tripo_pbr_model_25814f77-806a-4286-b7f8-538eb0e85b8d.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMjU4MTRmNzctODA2YS00Mjg2LWI3ZjgtNTM4ZWIwZTg1YjhkL3RyaXBvX3Bicl9tb2RlbF8yNTgxNGY3Ny04MDZhLTQyODYtYjdmOC01MzhlYjBlODViOGQuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=NNy7udCUxw1OQrHNMd~ejZsm17AeIlNPkIXKI195vhcqYhG8bQtMT4Jt~MO2ilqNd~eg~SuH3zuHbxHyQ9Q4lgNPxWYPq2Vt94b2-XnKAjeHFuLVaX8YqFOeVG25rKmtVX-stkRXhr2BIM0ExaWKewu1EopUvaPMlICsUNLvCzZvjInDETt9A2O4sN5eY36vkWWkdaXkvqhDKPsLLs~IwgIML0JpCm0o~DW-EJ6tShuLuH8AJNEs~MbOpGHCtE12-F6yGaOxYBD3OhghgOCTMMCGUhzB~RNrtZjhiHNOQySa-qmTlP96ZZ1RQEnofDN-yRoXI0HiUV2GFbHw8eyTfw__"
+    },
+    "rendered_image": {
+      "type": "webp",
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_2f7346951d084585b27eccee2a32526a/20260714/25814f77-806a-4286-b7f8-538eb0e85b8d/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMmY3MzQ2OTUxZDA4NDU4NWIyN2VjY2VlMmEzMjUyNmEvMjAyNjA3MTQvMjU4MTRmNzctODA2YS00Mjg2LWI3ZjgtNTM4ZWIwZTg1YjhkL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=EywgxtlocULRCxHvPKBK1hEMt5FMTqY1Woqsy-ZnjedNlgPXVAor8-2CBJKEzZnMLDRDGhLks0yczaX829cX~q-Jt7SeoItwIWrke~ltggrCQbImFg52KaFi7fBDwlBPrAaEAoubjTioeZyyM6B7wlXhzdtE8JVHd2CvQNHAxQxXZJHqbrt9TZ41k4jgRXzegdbJJurdH14Am5b0G0Ss8hU89vwZo8Egsr-NHM1j~WjOCb6MNg~c813cFN9-rJE6pNtefzO6kaP7HZYW~JBGt61I9HI9W5CVCL8-YdO6wqRtaNPsS5WYDqR~4P9Tr74RvUCDvfnb4rwkgEpc7x40JQ__"
+    }
+  }
+}

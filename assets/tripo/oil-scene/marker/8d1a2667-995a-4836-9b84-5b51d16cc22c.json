@@ -1,0 +1,42 @@
+{
+  "task_id": "8d1a2667-995a-4836-9b84-5b51d16cc22c",
+  "type": "text_to_model",
+  "status": "success",
+  "input": {
+    "prompt": "single alcohol art marker pen for a cozy artist desk, softly rounded rectangular barrel, fitted cap and small nib-end details, hand-painted oil illustration style translated into clean game-ready 3D, matte ivory body with muted sage and coral accents, readable silhouette, centered at origin, isolated object, no text, no logo, no stand",
+    "negative_prompt": "photorealistic glossy plastic, text, letters, logo, watermark, background, floor, display stand, floating parts, extra pens",
+    "model_version": "v3.1-20260211",
+    "texture": true,
+    "pbr": true,
+    "texture_quality": "detailed",
+    "texture_alignment": "geometry",
+    "auto_size": true,
+    "smart_low_poly": true,
+    "export_uv": true,
+    "face_limit": 8000,
+    "compress": "meshopt",
+    "geometry_quality": "detailed"
+  },
+  "output": {
+    "pbr_model": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/8d1a2667-995a-4836-9b84-5b51d16cc22c/tripo_pbr_model_8d1a2667-995a-4836-9b84-5b51d16cc22c.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvOGQxYTI2NjctOTk1YS00ODM2LTliODQtNWI1MWQxNmNjMjJjL3RyaXBvX3Bicl9tb2RlbF84ZDFhMjY2Ny05OTVhLTQ4MzYtOWI4NC01YjUxZDE2Y2MyMmMuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=xH~yInVYMB319f08TBItjj8yvZ8AX59ea4mS6uVmeeOr4EpKidbGxL7BogoteXg1xs6F2j9GxABAQVFsIdbw-HCM3KGhh661EpXukj16AN9hx-TsSj2csEtNHSGj~-wa4AfwmKYcR1q1N-xNyPSs5hjImz6rjRVzvT~Sl9nhnleL8UKapfpxOw0wEhc0lgJz5VtKbBlQL~I-NrJdOiu45B6ESRmKew7KFGiT4BMebP9CSJTTYUP8Vzr9KtWWEc9wep15aOr4yTRchDtskOBXVCOfK3HxwixG9OSTE86miKIod~BiTTuivfcms5AXc7bRE7YmOIoxZ4rN~-9GWg3iVA__",
+    "generated_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/8d1a2667-995a-4836-9b84-5b51d16cc22c/text2image_8d1a2667-995a-4836-9b84-5b51d16cc22c.jpeg?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvOGQxYTI2NjctOTk1YS00ODM2LTliODQtNWI1MWQxNmNjMjJjL3RleHQyaW1hZ2VfOGQxYTI2NjctOTk1YS00ODM2LTliODQtNWI1MWQxNmNjMjJjLmpwZWciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=a0IhLhPUPe5IdC7HLu253JN7m9XC6oJloJo2HvEd5PCwaDyoSLMIa5IBcS9NPLgDYUrG-m-6fXTPO7O5ArcGJkT92VeV6cQotpVQ4CvPGWrw0fr2JJTDlxlgnPUIITqA3l~fGXJTvBGdHCwfFpl-MOV-dp1MxdG03IzcGy-F91447cbn1VEX6VIsnI54AP7oEkFKkB8-cU0kcyon2Jv3zy9qqi-KrYdcey5Y4tOxaNdIxOx9j9s5IOATfNdjhmyslF5UM-vrl-LBJhD-cn3HXzGxgIrKNToTYJncYEInZGNNzEsG3RAFY-RVuLY-xaBktG2geSD-5soIIt-vzY-S0w__",
+    "rendered_image": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/8d1a2667-995a-4836-9b84-5b51d16cc22c/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvOGQxYTI2NjctOTk1YS00ODM2LTliODQtNWI1MWQxNmNjMjJjL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=Wt2kk7WS0uKRd5QyNhhqCGX7NpxAwqmi1E-RUDWDi~qVjSN1kT2Dz2T7ND6tjQf7PWJcHmdQ9WKy4T00O4aOz758EuHjWJPgajrFVIArBPsXRFXlMaJ1BzbH~-NXABdgeGUVbShKwt9SGwx2emSWnUqpy98iDrBQX3vLdzS3I5fOa~p3enKLnao165UTsUcotbLGQ6zhjX96-fpG2FrsgZgshzke2YItM9MpdU17unWBuU8KRsmns1wQq6OvVJfIFeZLwNBYRnovRqxBqSMeyeMGNNmrxuacEfd5t6ZNEdUZk41ZfWvqgm49ODfMdOotog1FOpG0OkYCUzHHdymXBQ__"
+  },
+  "progress": 100,
+  "create_time": 1784009507,
+  "consumed_credit": 60,
+  "prompt": "single alcohol art marker pen for a cozy artist desk, softly rounded rectangular barrel, fitted cap and small nib-end details, hand-painted oil illustration style translated into clean game-ready 3D, matte ivory body with muted sage and coral accents, readable silhouette, centered at origin, isolated object, no text, no logo, no stand",
+  "thumbnail": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/8d1a2667-995a-4836-9b84-5b51d16cc22c/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvOGQxYTI2NjctOTk1YS00ODM2LTliODQtNWI1MWQxNmNjMjJjL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=Wt2kk7WS0uKRd5QyNhhqCGX7NpxAwqmi1E-RUDWDi~qVjSN1kT2Dz2T7ND6tjQf7PWJcHmdQ9WKy4T00O4aOz758EuHjWJPgajrFVIArBPsXRFXlMaJ1BzbH~-NXABdgeGUVbShKwt9SGwx2emSWnUqpy98iDrBQX3vLdzS3I5fOa~p3enKLnao165UTsUcotbLGQ6zhjX96-fpG2FrsgZgshzke2YItM9MpdU17unWBuU8KRsmns1wQq6OvVJfIFeZLwNBYRnovRqxBqSMeyeMGNNmrxuacEfd5t6ZNEdUZk41ZfWvqgm49ODfMdOotog1FOpG0OkYCUzHHdymXBQ__",
+  "queuing_num": -1,
+  "running_left_time": -1,
+  "result": {
+    "pbr_model": {
+      "type": "glb",
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/8d1a2667-995a-4836-9b84-5b51d16cc22c/tripo_pbr_model_8d1a2667-995a-4836-9b84-5b51d16cc22c.glb?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvOGQxYTI2NjctOTk1YS00ODM2LTliODQtNWI1MWQxNmNjMjJjL3RyaXBvX3Bicl9tb2RlbF84ZDFhMjY2Ny05OTVhLTQ4MzYtOWI4NC01YjUxZDE2Y2MyMmMuZ2xiIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzg0MDczNjAwfX19XX0_&Signature=xH~yInVYMB319f08TBItjj8yvZ8AX59ea4mS6uVmeeOr4EpKidbGxL7BogoteXg1xs6F2j9GxABAQVFsIdbw-HCM3KGhh661EpXukj16AN9hx-TsSj2csEtNHSGj~-wa4AfwmKYcR1q1N-xNyPSs5hjImz6rjRVzvT~Sl9nhnleL8UKapfpxOw0wEhc0lgJz5VtKbBlQL~I-NrJdOiu45B6ESRmKew7KFGiT4BMebP9CSJTTYUP8Vzr9KtWWEc9wep15aOr4yTRchDtskOBXVCOfK3HxwixG9OSTE86miKIod~BiTTuivfcms5AXc7bRE7YmOIoxZ4rN~-9GWg3iVA__"
+    },
+    "rendered_image": {
+      "type": "webp",
+      "url": "https://tripo-data.rg1.data.tripo3d.com/tcli_fb5ada17b205425eac7f4d6ab3f10605/20260714/8d1a2667-995a-4836-9b84-5b51d16cc22c/legacy_mesh.webp?Key-Pair-Id=K1676C64NMVM2J&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfZmI1YWRhMTdiMjA1NDI1ZWFjN2Y0ZDZhYjNmMTA2MDUvMjAyNjA3MTQvOGQxYTI2NjctOTk1YS00ODM2LTliODQtNWI1MWQxNmNjMjJjL2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODQwNzM2MDB9fX1dfQ__&Signature=Wt2kk7WS0uKRd5QyNhhqCGX7NpxAwqmi1E-RUDWDi~qVjSN1kT2Dz2T7ND6tjQf7PWJcHmdQ9WKy4T00O4aOz758EuHjWJPgajrFVIArBPsXRFXlMaJ1BzbH~-NXABdgeGUVbShKwt9SGwx2emSWnUqpy98iDrBQX3vLdzS3I5fOa~p3enKLnao165UTsUcotbLGQ6zhjX96-fpG2FrsgZgshzke2YItM9MpdU17unWBuU8KRsmns1wQq6OvVJfIFeZLwNBYRnovRqxBqSMeyeMGNNmrxuacEfd5t6ZNEdUZk41ZfWvqgm49ODfMdOotog1FOpG0OkYCUzHHdymXBQ__"
+    }
+  }
+}

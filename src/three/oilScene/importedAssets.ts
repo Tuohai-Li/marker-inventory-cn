@@ -78,10 +78,13 @@ export function normalizeImportedRoot(root: THREE.Group, targetSize: number): TH
 
   if (largestDimension === 0) return root;
 
-  root.position.x -= (bounds.min.x + bounds.max.x) / 2;
-  root.position.z -= (bounds.min.z + bounds.max.z) / 2;
-  root.position.y -= bounds.min.y;
   root.scale.multiplyScalar(targetSize / largestDimension);
+  root.updateMatrixWorld(true);
+
+  const scaledBounds = new THREE.Box3().setFromObject(root);
+  root.position.x -= (scaledBounds.min.x + scaledBounds.max.x) / 2;
+  root.position.z -= (scaledBounds.min.z + scaledBounds.max.z) / 2;
+  root.position.y -= scaledBounds.min.y;
   root.updateMatrixWorld(true);
   return root;
 }

@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OIL_PALETTE, OIL_SCENE_CONFIG } from "./config";
+import { loadImportedOilAssets } from "./importedAssets";
 import { createOilMaterialKit } from "./materials";
 import { buildNotebook } from "./notebook";
 import { buildDeskProps } from "./props";
@@ -96,6 +97,14 @@ export function createOilScene(
 
   const diagnostics: OilSceneDiagnostics = {
     pose,
+    assets: {
+      deskProps: "loading",
+      foliage: "loading",
+      meshes: 0,
+      materials: 0,
+      textures: 0,
+      triangles: 0,
+    },
     drawCalls: 0,
     triangles: 0,
     geometries: 0,
@@ -105,6 +114,16 @@ export function createOilScene(
     animationActive,
     pixelRatio,
   };
+  // Tasks 4 and 5 replace these placeholders with the procedural fallback groups.
+  const importedAssets = loadImportedOilAssets({
+    scene,
+    proceduralDeskProps: new THREE.Group(),
+    proceduralFoliage: new THREE.Group(),
+    treeCrowns: motion.treeCrowns,
+    diagnostics: diagnostics.assets,
+    track,
+  });
+  void importedAssets.ready;
 
   function updateMotion(deltaSeconds: number) {
     if (reducedMotion || !animationActive) return;
@@ -201,6 +220,7 @@ export function createOilScene(
     dispose() {
       if (disposed) return;
       disposed = true;
+      importedAssets.dispose();
       resources.forEach((resource) => resource.dispose());
       resources.clear();
       scene.clear();

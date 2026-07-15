@@ -162,7 +162,18 @@ export function buildWorld(
   sky.position.set(0, 2.45, -13.2);
   scene.add(sky);
 
-  const backdropTexture = track(new THREE.TextureLoader().load(oilWindowBackdropUrl));
+  let settleBackdrop!: () => void;
+  const backdropReady = new Promise<void>((resolve) => {
+    settleBackdrop = resolve;
+  });
+  const backdropTexture = track(
+    new THREE.TextureLoader().load(
+      oilWindowBackdropUrl,
+      settleBackdrop,
+      undefined,
+      settleBackdrop,
+    ),
+  );
   backdropTexture.colorSpace = THREE.SRGBColorSpace;
   backdropTexture.anisotropy = 4;
   const backdropMaterial = track(
@@ -240,5 +251,6 @@ export function buildWorld(
     ],
     waterMaterial,
     proceduralFoliage,
+    backdropReady,
   };
 }

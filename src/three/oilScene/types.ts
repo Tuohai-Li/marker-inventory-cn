@@ -27,6 +27,7 @@ export interface OilSceneDiagnostics {
 }
 
 export interface OilSceneController {
+  ready: Promise<void>;
   setPose(pose: ScenePose, immediate?: boolean): void;
   setPointer(x: number, y: number): void;
   setReducedMotion(reducedMotion: boolean): void;
@@ -50,6 +51,7 @@ export type WorldBuildResult = Pick<
   "treeCrowns" | "clouds" | "curtains" | "waterMaterial"
 > & {
   proceduralFoliage: THREE.Group;
+  backdropReady: Promise<void>;
 };
 
 export interface Disposable {

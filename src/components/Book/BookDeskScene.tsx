@@ -45,6 +45,10 @@ export function BookDeskScene({ children }: BookDeskSceneProps) {
       publishDiagnostics();
     };
 
+    void controller.ready.then(() => {
+      if (controllerRef.current === controller) renderOnce();
+    });
+
     const frame = (time: number) => {
       if (!loopActive) return;
       controller.render(time);

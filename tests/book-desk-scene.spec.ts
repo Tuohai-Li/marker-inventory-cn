@@ -213,6 +213,39 @@ test("stops environmental motion when reduced motion is requested", async ({ pag
   );
 });
 
+test("redraws async backdrop and imported assets under reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+
+  await expect.poll(async () => (await readDiagnostics(page))?.assets.deskProps).toBe("loaded");
+  await expect.poll(async () => (await readDiagnostics(page))?.assets.foliage).toBe("loaded");
+  await expect
+    .poll(async () => (await readDiagnostics(page))?.triangles)
+    .toBeGreaterThan(100_000);
+
+  const backdropPixel = await page.getByTestId("book-desk-scene-canvas").evaluate((element) => {
+    const canvas = element as HTMLCanvasElement;
+    const gl =
+      canvas.getContext("webgl2", { preserveDrawingBuffer: true }) ??
+      canvas.getContext("webgl", { preserveDrawingBuffer: true });
+    if (!gl) return [0, 0, 0, 0];
+
+    const pixel = new Uint8Array(4);
+    gl.readPixels(
+      Math.floor(canvas.width * 0.5),
+      Math.floor(canvas.height * 0.92),
+      1,
+      1,
+      gl.RGBA,
+      gl.UNSIGNED_BYTE,
+      pixel,
+    );
+    return Array.from(pixel);
+  });
+
+  expect(Math.max(...backdropPixel.slice(0, 3))).toBeGreaterThan(16);
+});
+
 test("keeps navigation, modal, resize, and scene lifecycle healthy", async ({ page }) => {
   const errors: string[] = [];
   page.on("console", (message) => {

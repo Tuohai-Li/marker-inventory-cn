@@ -122,7 +122,7 @@ export function createOilScene(
     diagnostics: diagnostics.assets,
     track,
   });
-  void importedAssets.ready;
+  const ready = Promise.all([world.backdropReady, importedAssets.ready]).then(() => undefined);
 
   function updateMotion(deltaSeconds: number) {
     if (reducedMotion || !animationActive) return;
@@ -164,7 +164,8 @@ export function createOilScene(
     motion.notebook.rotation.x = THREE.MathUtils.lerp(-0.035, 0.015, poseValue);
   }
 
-  return {
+  const controller: OilSceneController = {
+    ready,
     setPose(nextPose, immediate = false) {
       pose = nextPose;
       poseTarget = nextPose === "focus" ? 1 : 0;
@@ -225,4 +226,6 @@ export function createOilScene(
       scene.clear();
     },
   };
+
+  return controller;
 }

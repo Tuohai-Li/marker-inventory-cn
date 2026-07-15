@@ -48,7 +48,13 @@ test("renders the 3D desk scene behind the existing interactive book", async ({ 
 
   await expect.poll(async () => (await readDiagnostics(page))?.assets.deskProps).toBe("loaded");
   await expect.poll(async () => (await readDiagnostics(page))?.assets.foliage).toBe("loaded");
-  expect((await readDiagnostics(page))?.assets.triangles).toBeGreaterThan(0);
+  const diagnostics = await readDiagnostics(page);
+  expect(diagnostics?.assets.meshes).toBeGreaterThan(0);
+  expect(diagnostics?.assets.materials).toBeGreaterThan(0);
+  expect(diagnostics?.assets.textures).toBeGreaterThan(0);
+  expect(diagnostics?.assets.triangles).toBeGreaterThan(0);
+  expect(diagnostics?.drawCalls).toBeLessThan(120);
+  expect(diagnostics?.triangles).toBeLessThan(250_000);
 
   const canvasBox = await canvas.boundingBox();
   const sceneBox = await scene.boundingBox();
@@ -98,6 +104,20 @@ test("renders the 3D desk scene behind the existing interactive book", async ({ 
 
   expect(sampledPixels.nonEmpty).toBeGreaterThan(0);
   expect(sampledPixels.unique).toBeGreaterThan(1);
+
+  await page.locator("header input").first().fill("Copic");
+  await page.locator("header input").first().press("Enter");
+  await expect(page).toHaveURL(/\/library\?q=Copic$/);
+  await expect(page.locator(".book-page")).toBeVisible();
+});
+
+test("keeps desk imports and search interactive when foliage loading fails", async ({ page }) => {
+  await page.route("**/foliage-kit*.glb", (route) => route.abort());
+  await page.goto("/");
+
+  await expect.poll(async () => (await readDiagnostics(page))?.assets.deskProps).toBe("loaded");
+  await expect.poll(async () => (await readDiagnostics(page))?.assets.foliage).toBe("fallback");
+  await expect(page.getByTestId("book-desk-scene-canvas")).toBeVisible();
 
   await page.locator("header input").first().fill("Copic");
   await page.locator("header input").first().press("Enter");

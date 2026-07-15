@@ -71,3 +71,19 @@ The preserved foliage runtime contains 14,210 triangles from the 23,334-triangle
 - Normal desk probe: the visible desk import now has 47,293 triangles from its current runtime files. The eight markers, cup, and swatches are visible; this metric is informational only.
 - Intercepted GLB probe: `deskProps=fallback`, `foliage=loading`, and imported resource counts/triangles are zero. The application emits exactly one `Unable to load Tripo desk props` error.
 - The focused Task 4 Playwright command remains red only on Task 5's unimplemented foliage expectations (`loading` rather than `loaded`/`fallback`); no foliage state was changed or represented as complete here.
+
+## Task 6 Browser Regression Verification
+
+Final Chromium diagnostics with all four runtime GLBs loaded:
+
+| Imported assets | Renderer |
+| --- | --- |
+| `deskProps=loaded`, `foliage=loaded` | `drawCalls=68`, `triangles=156,628` |
+| `meshes=12`, `materials=4`, `textures=12` | `geometries=45`, `textures=17`, `pixelRatio=1` |
+| clone-aware `triangles=75,713` | `motionTick=14`, `animationActive=true` |
+
+The stable runtime inputs measured in this verification were `marker.glb` 493,932 bytes, `cup.glb` 386,132 bytes, `swatches.glb` 735,612 bytes, and `foliage-kit.glb` 1,321,304 bytes. `@gltf-transform/cli inspect` confirmed that the largest observed runtime texture is **1024x1024**; every GLB contains three 1024x1024 JPEG PBR maps.
+
+The single-instance runtime-source total is **39,327** triangles. The clone-aware scene value is **75,713** triangles: 47,293 for the visible desk imports plus 28,420 for two foliage placements. Per the Task 6 user override, clone-aware triangle overage is **informational only**: tests assert imported meshes, materials, textures, and triangles are present, but intentionally do **not** assert imported triangles are at or below 50,000. The 75,713 value must not fail tests or trigger rollback. The hard browser renderer budgets remain `drawCalls < 120` and `triangles < 250,000`.
+
+`npx playwright test --project=chromium` passed all 7 Chromium tests in 39.2s, including the all-GLB fallback and the foliage-only abort regression. The partial-failure probe aborts only `**/foliage-kit*.glb`, observes `deskProps=loaded` and `foliage=fallback`, and completes a Copic search. The normal diagnostics probe recorded no console or page errors. `npm run build` passed in 4.36s and emitted all four hashed GLBs; Vite retained its existing advisory for the 1,497.22 kB minified JavaScript chunk.

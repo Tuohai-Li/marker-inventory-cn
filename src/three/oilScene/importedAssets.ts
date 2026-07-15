@@ -105,6 +105,7 @@ function addPlacedRoot(
   wrapper.rotation.set(...rotation);
   wrapper.add(root);
   parent.add(wrapper);
+  return wrapper;
 }
 
 function createImportedDeskProps({ marker, cup, swatches }: ImportedDeskRoots) {
@@ -119,6 +120,24 @@ function createImportedDeskProps({ marker, cup, swatches }: ImportedDeskRoots) {
   addPlacedRoot(group, swatches, [-4.0, -1.34, 2.0], [0, -0.42, 0]);
 
   return group;
+}
+
+function createImportedFoliage(foliage: THREE.Group) {
+  const group = new THREE.Group();
+  group.name = "ImportedFoliage";
+
+  const left = addPlacedRoot(
+    group,
+    foliage.clone(true),
+    [-4.0, -0.55, -4.9],
+    [0, 0.24, 0],
+  );
+  left.name = "ImportedFoliageLeft";
+
+  const right = addPlacedRoot(group, foliage, [3.8, -0.55, -5.2], [0, -0.24, 0]);
+  right.name = "ImportedFoliageRight";
+
+  return { group, left, right };
 }
 
 export function normalizeImportedRoot(root: THREE.Group, targetSize: number): THREE.Group {
@@ -182,6 +201,8 @@ export function loadImportedOilAssets(options: ImportedOilAssetOptions): Importe
     loadNormalizedRoot("cup"),
     loadNormalizedRoot("swatches"),
   ] as const;
+  const foliageLoad = loadNormalizedRoot("foliage");
+  const registeredTreeCrowns: SceneMotionHandles["treeCrowns"] = [];
 
   const ready = Promise.all(deskLoads)
     .then(([marker, cup, swatches]) => {
@@ -213,13 +234,47 @@ export function loadImportedOilAssets(options: ImportedOilAssetOptions): Importe
       console.error("Unable to load Tripo desk props");
     });
 
+  const foliageReady = foliageLoad
+    .then((foliage) => {
+      const importedFoliage = createImportedFoliage(foliage);
+      if (disposed) {
+        disposeImportedResources(importedFoliage.group);
+        return;
+      }
+
+      const summary = collectImportedResources(importedFoliage.group);
+      registerResources(summary);
+      options.diagnostics.triangles += summary.triangles;
+      options.scene.add(importedFoliage.group);
+      attachedRoots.add(importedFoliage.group);
+      registeredTreeCrowns.push(
+        { group: importedFoliage.left, phase: 0.35, amplitude: 0.021 },
+        { group: importedFoliage.right, phase: 2.6, amplitude: 0.019 },
+      );
+      options.treeCrowns.push(...registeredTreeCrowns);
+      options.proceduralFoliage.visible = false;
+      options.diagnostics.foliage = "loaded";
+    })
+    .catch(() => {
+      if (disposed) return;
+
+      options.proceduralFoliage.visible = true;
+      options.diagnostics.foliage = "fallback";
+      console.error("Unable to load Tripo foliage");
+    });
+
   return {
-    ready,
+    ready: Promise.all([ready, foliageReady]).then(() => undefined),
     dispose() {
       if (disposed) return;
       disposed = true;
       attachedRoots.forEach((root) => root.removeFromParent());
       attachedRoots.clear();
+      registeredTreeCrowns.forEach((treeCrown) => {
+        const index = options.treeCrowns.indexOf(treeCrown);
+        if (index >= 0) options.treeCrowns.splice(index, 1);
+      });
+      registeredTreeCrowns.length = 0;
     },
   };
 }

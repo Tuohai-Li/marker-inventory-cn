@@ -3,9 +3,7 @@ import oilWindowBackdropUrl from "@/assets/oil-window-backdrop.webp";
 import { OIL_PALETTE } from "./config";
 import { createCloudGeometry, createLeafGeometry } from "./geometry";
 import type { OilMaterialKit } from "./materials";
-import type { SceneMotionHandles, TrackResource } from "./types";
-
-type WorldMotion = Pick<SceneMotionHandles, "treeCrowns" | "clouds" | "curtains" | "waterMaterial">;
+import type { TrackResource, WorldBuildResult } from "./types";
 
 function addBox(
   parent: THREE.Object3D,
@@ -88,7 +86,7 @@ function createWaterMaterial(track: TrackResource) {
 }
 
 function addTree(
-  scene: THREE.Scene,
+  parent: THREE.Object3D,
   materials: OilMaterialKit,
   track: TrackResource,
   x: number,
@@ -101,7 +99,7 @@ function addTree(
     materials.woodDark,
   );
   trunk.position.set(x, -0.05 + 0.65 * scale, z);
-  scene.add(trunk);
+  parent.add(trunk);
 
   const crown = new THREE.Group();
   crown.position.set(x, 1.15 * scale, z);
@@ -120,12 +118,12 @@ function addTree(
     leaf.scale.setScalar(scale * (0.92 + (index % 2) * 0.16));
     crown.add(leaf);
   });
-  scene.add(crown);
+  parent.add(crown);
   return { group: crown, phase, amplitude: 0.014 + scale * 0.008 };
 }
 
 function addFlowerMass(
-  scene: THREE.Scene,
+  parent: THREE.Object3D,
   materials: OilMaterialKit,
   track: TrackResource,
   x: number,
@@ -152,14 +150,14 @@ function addFlowerMass(
       group.add(flower);
     }
   }
-  scene.add(group);
+  parent.add(group);
 }
 
 export function buildWorld(
   scene: THREE.Scene,
   materials: OilMaterialKit,
   track: TrackResource,
-): WorldMotion {
+): WorldBuildResult {
   const sky = new THREE.Mesh(track(new THREE.PlaneGeometry(20, 9)), createSkyMaterial(track));
   sky.position.set(0, 2.45, -13.2);
   scene.add(sky);
@@ -204,18 +202,22 @@ export function buildWorld(
   rightCurtain.rotation.y = -0.08;
   scene.add(rightCurtain);
 
+  const proceduralFoliage = new THREE.Group();
+  proceduralFoliage.name = "ProceduralFoliage";
+  scene.add(proceduralFoliage);
+
   const treeCrowns = [
-    addTree(scene, materials, track, -4.0, -5.3, 1.25, 0.1),
-    addTree(scene, materials, track, -3.0, -7.1, 1.0, 1.7),
-    addTree(scene, materials, track, 3.75, -5.7, 1.18, 2.8),
-    addTree(scene, materials, track, 2.9, -7.8, 0.9, 4.1),
+    addTree(proceduralFoliage, materials, track, -4.0, -5.3, 1.25, 0.1),
+    addTree(proceduralFoliage, materials, track, -3.0, -7.1, 1.0, 1.7),
+    addTree(proceduralFoliage, materials, track, 3.75, -5.7, 1.18, 2.8),
+    addTree(proceduralFoliage, materials, track, 2.9, -7.8, 0.9, 4.1),
   ];
 
-  addFlowerMass(scene, materials, track, -4.2, -0.42, -2.65);
-  addFlowerMass(scene, materials, track, 4.2, -0.5, -2.8);
+  addFlowerMass(proceduralFoliage, materials, track, -4.2, -0.42, -2.65);
+  addFlowerMass(proceduralFoliage, materials, track, 4.2, -0.5, -2.8);
 
   const cloudGeometry = createCloudGeometry(track);
-  const clouds: WorldMotion["clouds"] = [];
+  const clouds: WorldBuildResult["clouds"] = [];
   [-3.2, 0.2, 3.1].forEach((x, cloudIndex) => {
     const group = new THREE.Group();
     group.position.set(x, 3.1 + cloudIndex * 0.22, -11.7 - cloudIndex * 0.18);
@@ -237,5 +239,6 @@ export function buildWorld(
       { mesh: rightCurtain, phase: Math.PI },
     ],
     waterMaterial,
+    proceduralFoliage,
   };
 }

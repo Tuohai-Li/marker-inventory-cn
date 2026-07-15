@@ -117,7 +117,7 @@ export function createOilScene(
   const importedAssets = loadImportedOilAssets({
     scene,
     proceduralDeskProps: deskProps.group,
-    proceduralFoliage: new THREE.Group(),
+    proceduralFoliage: world.proceduralFoliage,
     treeCrowns: motion.treeCrowns,
     diagnostics: diagnostics.assets,
     track,

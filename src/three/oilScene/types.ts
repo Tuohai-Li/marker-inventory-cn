@@ -45,6 +45,13 @@ export interface SceneMotionHandles {
   notebook: THREE.Group;
 }
 
+export type WorldBuildResult = Pick<
+  SceneMotionHandles,
+  "treeCrowns" | "clouds" | "curtains" | "waterMaterial"
+> & {
+  proceduralFoliage: THREE.Group;
+};
+
 export interface Disposable {
   dispose: () => void;
 }
